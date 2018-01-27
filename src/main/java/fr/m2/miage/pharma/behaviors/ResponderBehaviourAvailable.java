@@ -1,4 +1,4 @@
-package fr.m2.miage.pharma.behaviors;
+/*package fr.m2.miage.pharma.behaviors;
 
 import static fr.m2.miage.pharma.services.DatabaseService.getAllNotEmptyLotFromMaladie;
 import static fr.m2.miage.pharma.services.DatabaseService.getAvailableUnits;
@@ -148,3 +148,4 @@ public class ResponderBehaviourAvailable extends CyclicBehaviour {
     return offerWithoutTime;
   }
 }
+*/

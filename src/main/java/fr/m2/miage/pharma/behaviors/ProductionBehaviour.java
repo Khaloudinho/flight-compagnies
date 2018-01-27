@@ -1,4 +1,4 @@
-package fr.m2.miage.pharma.behaviors;
+/*package fr.m2.miage.pharma.behaviors;
 
 import static fr.m2.miage.pharma.services.DatabaseService.addStockToRandomMaladie;
 
@@ -20,3 +20,4 @@ public class ProductionBehaviour extends TickerBehaviour {
     addStockToRandomMaladie(minStockTrigger, this.myAgent.getName());
   }
 }
+*/

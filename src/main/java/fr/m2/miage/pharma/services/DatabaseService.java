@@ -1,24 +1,22 @@
 package fr.m2.miage.pharma.services;
 
-import static fr.m2.miage.pharma.services.HibernateSessionProvider.getSessionFactory;
+import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import fr.m2.miage.pharma.models.Lot;
-import fr.m2.miage.pharma.models.Maladie;
-import fr.m2.miage.pharma.models.Vente;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import org.hibernate.Session;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import static fr.m2.miage.pharma.services.HibernateSessionProvider.getSessionFactory;
 
 public class DatabaseService {
 
   private static final Logger logger = LoggerFactory.getLogger(DatabaseService.class);
 
-  public static int getAvailableUnits(String maladieName, Date peremption, String agentName) {
+  /*public static int getAvailableUnits(String maladieName, Date peremption, String agentName) {
     Session session = getSessionFactory().openSession();
     Integer availableUnits;
 
@@ -161,5 +159,5 @@ public class DatabaseService {
     session.save(o);
     session.getTransaction().commit();
     session.close();
-  }
+  }*/
 }

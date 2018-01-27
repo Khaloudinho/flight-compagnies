@@ -1,9 +1,8 @@
-package fr.m2.miage.pharma.agents;
+/*package fr.m2.miage.pharma.agents;
 
 import static fr.m2.miage.pharma.services.HibernateSessionProvider.getSessionFactory;
 
 import fr.m2.miage.pharma.behaviors.RegisterService;
-import fr.m2.miage.pharma.behaviors.ResponderBehaviourAvailable;
 import jade.core.Agent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,3 +30,4 @@ public class LaboAgentAvailable extends Agent {
     getSessionFactory().close();
   }
 }
+*/

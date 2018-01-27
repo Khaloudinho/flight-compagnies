@@ -1,4 +1,4 @@
-package fr.m2.miage.pharma.behaviors;
+/*package fr.m2.miage.pharma.behaviors;
 
 import static fr.m2.miage.pharma.services.DatabaseService.getMaladieByName;
 import static fr.m2.miage.pharma.services.DatabaseService.saveVente;
@@ -92,4 +92,4 @@ public class ResponderBehaviourBoiron extends CyclicBehaviour {
     return offerWithoutTime;
   }
 
-}
+}*/

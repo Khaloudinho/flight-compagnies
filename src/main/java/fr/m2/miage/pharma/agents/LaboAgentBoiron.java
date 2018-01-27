@@ -1,4 +1,4 @@
-package fr.m2.miage.pharma.agents;
+/*package fr.m2.miage.pharma.agents;
 
 import fr.m2.miage.pharma.behaviors.RegisterService;
 import fr.m2.miage.pharma.behaviors.ResponderBehaviourBoiron;
@@ -24,4 +24,4 @@ public class LaboAgentBoiron extends Agent {
   protected void takeDown() {
     logger.info("Taking down " + this.getName() + " gracefully");
   }
-}
+}*/

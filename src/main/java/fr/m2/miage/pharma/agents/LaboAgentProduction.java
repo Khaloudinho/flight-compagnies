@@ -1,4 +1,4 @@
-package fr.m2.miage.pharma.agents;
+/*package fr.m2.miage.pharma.agents;
 
 import static fr.m2.miage.pharma.services.HibernateSessionProvider.getSessionFactory;
 
@@ -38,4 +38,4 @@ public class LaboAgentProduction extends Agent {
     logger.info("Taking down " + this.getName() + " gracefully");
     getSessionFactory().close();
   }
-}
+}*/
