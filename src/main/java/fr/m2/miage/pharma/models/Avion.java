@@ -19,7 +19,8 @@ public class Avion implements Serializable {
     private int autonomie;
     private int consommationCarburant;
 
-    public Avion() {}
+    public Avion() {
+    }
 
     public Avion(String immatriculation, int capaciteTotale, int autonomie, int consommationCarburant) {
         this.immatriculation = immatriculation;

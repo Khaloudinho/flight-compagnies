@@ -19,7 +19,8 @@ public class Abonnement implements Serializable {
 
     private double prixAbonnement;
 
-    public Abonnement() {}
+    public Abonnement() {
+    }
 
     public Abonnement(String nom, double prix) {
         this.nomAbonnement = nom;

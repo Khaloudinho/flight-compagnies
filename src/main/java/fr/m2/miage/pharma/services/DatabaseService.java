@@ -1,20 +1,11 @@
 package fr.m2.miage.pharma.services;
 
-import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Instant;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-
-import static fr.m2.miage.pharma.services.HibernateSessionProvider.getSessionFactory;
-
 public class DatabaseService {
 
-  private static final Logger logger = LoggerFactory.getLogger(DatabaseService.class);
+    private static final Logger logger = LoggerFactory.getLogger(DatabaseService.class);
 
   /*public static int getAvailableUnits(String maladieName, Date peremption, String agentName) {
     Session session = getSessionFactory().openSession();

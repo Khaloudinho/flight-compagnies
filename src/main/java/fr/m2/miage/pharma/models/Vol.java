@@ -1,8 +1,5 @@
 package fr.m2.miage.pharma.models;
 
-import fr.m2.miage.pharma.models.Aeroport;
-import fr.m2.miage.pharma.models.Avion;
-import fr.m2.miage.pharma.models.TypeVol;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -63,7 +60,7 @@ public class Vol implements Serializable {
         this.typeVol = typeVol;
         this.avion = avion;
         this.aeroportArrivee = aeroportArrivee;
-        this.capaciteLibre=capaciteLibre;
+        this.capaciteLibre = capaciteLibre;
         this.prixCoutant = 0;
         this.prixDeVente = 0;
     }

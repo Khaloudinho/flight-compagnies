@@ -19,7 +19,8 @@ public class Abonne implements Serializable {
     @OneToOne
     private Abonnement abonnement;
 
-    public Abonne() {}
+    public Abonne() {
+    }
 
     public Abonne(int numeroSiret, Abonnement abonnement) {
         this.numeroSiret = numeroSiret;

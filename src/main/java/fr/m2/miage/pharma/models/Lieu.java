@@ -19,7 +19,8 @@ public class Lieu implements Serializable {
 
     private String pays;
 
-    public Lieu() {}
+    public Lieu() {
+    }
 
     public Lieu(String ville, String pays) {
         this.ville = ville;

@@ -21,7 +21,8 @@ public class Reservation implements Serializable {
     @Enumerated(EnumType.STRING)
     private EtatReservation etatReservation;
 
-    public Reservation() {}
+    public Reservation() {
+    }
 
     public Reservation(Date dateReservation, Date dateLimite, EtatReservation etatReservation) {
         this.dateReservation = dateReservation;

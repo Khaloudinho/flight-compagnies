@@ -36,8 +36,9 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         if (aclMessage != null) {
             switch (aclMessage.getPerformative()) {
                 case ACLMessage.CFP:
-                    ACLMessage vols = null;
-                        vols = manageCFP(aclMessage);
+                    ACLMessage vols = aclMessage.createReply();
+                    vols.setPerformative(ACLMessage.PROPOSE);
+                    //vols = manageCFP(aclMessage);
                     myAgent.send(vols);
                     break;
 
@@ -80,7 +81,8 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 
         //On recupere la liste des vols pertinents
         ArrayList<VolAssociation> volsChartersCorrespondantsALaDemande = new ArrayList<VolAssociation>();
-        VolAssociation volAssociation = new VolAssociation("test", "Leopold san","Guinee",new java.util.Date(), 40, 40, TypeVol.Charter);
+        VolAssociation volAssociation = new VolAssociation("test", "Leopold san", "Guinee",
+                new java.util.Date(), 40, 40, TypeVol.Charter);
 
         //volsChartersCorrespondantsALaDemande.add(volAssociation);
         //VolAssociation volAssociation2 = new VolAssociation("test2", "Leopold san","Guinee",new java.util.Date(), 40, 40, TypeVol.Charter);
@@ -143,7 +145,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
                 volAcceptes) {
             String idVol = volAccepte.getUuid();
             Integer capaciteAUtiliser = volAccepte.getCapacite();
-            System.out.println(idVol+ " "+capaciteAUtiliser);
+            System.out.println(idVol + " " + capaciteAUtiliser);
             //Main.updateCapaciteVol(idVol, capaciteAUtiliser);
         }
         //response.setContent(acceptedVols);
