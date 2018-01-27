@@ -1,0 +1,16 @@
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/behaviors/ResponderBehaviourBoiron.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/models/Vente.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/services/DatabaseService.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/discuss/Request.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/behaviors/RegisterService.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/models/Lot.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/behaviors/ResponderBehaviourAvailable.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/services/HibernateSessionProvider.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/agents/LaboAgentProduction.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/agents/LaboAgentAvailable.java
+/Users/bertran95u/agents/src/main/java/Main.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/discuss/Proposition.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/models/Maladie.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/behaviors/ProductionBehaviour.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/behaviors/ResponderBehaviourProduction.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/pharma/agents/LaboAgentBoiron.java

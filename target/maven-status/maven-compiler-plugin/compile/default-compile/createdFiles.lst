@@ -1,0 +1,16 @@
+fr/m2/miage/pharma/behaviors/ProductionBehaviour.class
+fr/m2/miage/pharma/agents/LaboAgentBoiron.class
+fr/m2/miage/pharma/models/Maladie.class
+fr/m2/miage/pharma/services/DatabaseService.class
+fr/m2/miage/pharma/discuss/Proposition.class
+fr/m2/miage/pharma/agents/LaboAgentAvailable.class
+fr/m2/miage/pharma/behaviors/ResponderBehaviourBoiron.class
+fr/m2/miage/pharma/behaviors/ResponderBehaviourProduction.class
+fr/m2/miage/pharma/behaviors/RegisterService.class
+Main.class
+fr/m2/miage/pharma/agents/LaboAgentProduction.class
+fr/m2/miage/pharma/models/Vente.class
+fr/m2/miage/pharma/models/Lot.class
+fr/m2/miage/pharma/behaviors/ResponderBehaviourAvailable.class
+fr/m2/miage/pharma/services/HibernateSessionProvider.class
+fr/m2/miage/pharma/discuss/Request.class
