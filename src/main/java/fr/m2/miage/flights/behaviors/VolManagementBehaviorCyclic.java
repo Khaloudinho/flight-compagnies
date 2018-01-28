@@ -48,8 +48,8 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
                     break;
 
                 case ACLMessage.ACCEPT_PROPOSAL:
-                    ACLMessage acceptation = manageACCEPT_PROPOSAL(aclMessage);
-                    myAgent.send(acceptation);
+                    //ACLMessage acceptation = manageACCEPT_PROPOSAL(aclMessage);
+                    //myAgent.send(acceptation);
                     break;
 
                 default:
@@ -71,8 +71,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
     //{"pays":"Guinee","date":"May 16, 2017 09:10:10 AM","volume":"10"}
     private ACLMessage manageCFP(ACLMessage cfp) {
         //On recupere la demande
-        //String message = cfp.getContent();
-        String message = "{\"pays\":\"Guinee\",\"date\":\"May 16, 2017 09:10:10 AM\",\"volume\":\"10\"}";
+        String message = cfp.getContent();
         logger.info("Demande de vol : \n" + message);
 
         //On construit une reponse
@@ -83,33 +82,80 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         DemandeVols demandeVols = gson.fromJson(message, DemandeVols.class);
 
         //On recupere la liste des vols pertinents
-        List<VolAssociation> volsChartersCorrespondantsALaDemande = new ArrayList<>();
-        /*Session session = getSessionFactory().openSession();
-        List<Vol> volsEnBase = session
-                .createNamedQuery("Vol.calculerLesPrixDesVols", Vol.class)
-                .getResultList();
-        session.close();
+        List<VolAssociation> volsChartersCorrespondantsALaDemandeGuinee = new ArrayList<>();
+        List<VolAssociation> volsChartersCorrespondantsALaDemandeTunisie = new ArrayList<>();
+        List<VolAssociation> volsChartersCorrespondantsALaDemandeGambie = new ArrayList<>();
+        List<VolAssociation> volsChartersCorrespondantsALaDemandeCameroun = new ArrayList<>();
+        List<VolAssociation> volsChartersCorrespondantsALaDemandeSenegal = new ArrayList<>();
 
-        for (Vol v : volsEnBase) {
-            VolAssociation volAssociation = new VolAssociation(v.getIdVol(), v.getAeroportArrivee().getNomAeroport(), v.getAeroportArrivee().getLieu().getPays(),
-                    v.getDateArrivee(), v.getAvion().getCapaciteSoute(), v.getPrixDeVente(), TypeVol.Charter);
-            volsChartersCorrespondantsALaDemande.add(volAssociation);
-        }
-
-        for (VolAssociation v : volsChartersCorrespondantsALaDemande) {
-            System.out.println(v.toString());
-        }*/
-
-        VolAssociation volAssociation2 = new VolAssociation("test2", "Leopold san","Guinee",new java.util.Date(),
+        VolAssociation guinee1 = new VolAssociation("1", "Conacky","Guinee",new java.util.Date(),
          40, 40, TypeVol.Charter);
-        volsChartersCorrespondantsALaDemande.add(volAssociation2);
 
-        //ArrayList<VolAssociation> volAssociations = Main.getVols(TypeVol.Charter,
-        //demandeVols.getDate(), demandeVols.getPays(), demandeVols.getVolume());
+        VolAssociation guinee2 = new VolAssociation("2", "Conacky","Guinee",new java.util.Date(),
+         40, 40, TypeVol.Charter);
 
-        //volsChartersCorrespondantsALaDemande = new ArrayList<>();
-        //VolAssociation vtest = volAssociations.get(0);
-        //volsChartersCorrespondantsALaDemande.add(volAssociation);
+        VolAssociation tunisie1 = new VolAssociation("3", "Tunis","Tunisie",new java.util.Date(),
+         40, 40, TypeVol.Charter);
+
+        VolAssociation tunisie2 = new VolAssociation("4", "Tunis","Tunisie",new java.util.Date(),
+         40, 40, TypeVol.Charter);
+
+        VolAssociation gambie1 = new VolAssociation("5", "Banjul","Gambie",new java.util.Date(),
+         40, 40, TypeVol.Charter);
+
+        VolAssociation gambie2 = new VolAssociation("6", "Banjul","Gambie",new java.util.Date(),
+         40, 40, TypeVol.Charter);
+
+        VolAssociation cameroun1 = new VolAssociation("7", "Dhouala","Cameroun",new java.util.Date(),
+         40, 40, TypeVol.Charter);
+
+        VolAssociation cameroun2 = new VolAssociation("8", "Dhouala","Cameroun",new java.util.Date(),
+         40, 40, TypeVol.Charter);
+
+        VolAssociation dakar1 = new VolAssociation("9", "Dakar","Senegal",new java.util.Date(),
+         40, 40, TypeVol.Charter);
+
+        VolAssociation dakar2 = new VolAssociation("10", "Dakar","Senegal",new java.util.Date(),
+         40, 40, TypeVol.Charter);
+
+
+        volsChartersCorrespondantsALaDemandeGuinee.add(guinee1);
+        volsChartersCorrespondantsALaDemandeGuinee.add(guinee2);
+
+        volsChartersCorrespondantsALaDemandeTunisie.add(tunisie1);
+        volsChartersCorrespondantsALaDemandeTunisie.add(tunisie2);
+
+        volsChartersCorrespondantsALaDemandeGambie.add(gambie1);
+        volsChartersCorrespondantsALaDemandeGambie.add(gambie2);
+
+        volsChartersCorrespondantsALaDemandeCameroun.add(cameroun1);
+        volsChartersCorrespondantsALaDemandeCameroun.add(cameroun2);
+
+        volsChartersCorrespondantsALaDemandeSenegal.add(dakar1);
+        volsChartersCorrespondantsALaDemandeSenegal.add(dakar2);
+
+        List<VolAssociation> volsChartersCorrespondantsALaDemande = new ArrayList<>();
+        switch (demandeVols.getPays()){
+            case "Guinee":
+                volsChartersCorrespondantsALaDemande = volsChartersCorrespondantsALaDemandeGuinee;
+                break;
+
+            case "Tunisie":
+                volsChartersCorrespondantsALaDemande = volsChartersCorrespondantsALaDemandeTunisie;
+                break;
+
+            case "Gambie":
+                volsChartersCorrespondantsALaDemande = volsChartersCorrespondantsALaDemandeGambie;
+                break;
+
+            case "Cameroun":
+                volsChartersCorrespondantsALaDemande =  volsChartersCorrespondantsALaDemandeCameroun;
+                break;
+
+            case "Senegal":
+                volsChartersCorrespondantsALaDemande = volsChartersCorrespondantsALaDemandeSenegal;
+                break;
+        }
 
         int tailleListeVols = volsChartersCorrespondantsALaDemande.size();
         logger.info("TAILLE LISTE VOLS : " + tailleListeVols);
@@ -119,22 +165,10 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 
         response.setPerformative(ACLMessage.PROPOSE);
         response.setContent(messageAssociationContent);
+
+        logger.info(messageAssociationContent);
         logger.info("Liste de vols envoyée aux associations");
 
-        //Si la liste contient au moins 1 vol
-        //On va envoyer cette liste avec le type PROPOSE
-        /*if (tailleListeVols > 0) {
-            response.setPerformative(ACLMessage.PROPOSE);
-            response.setContent(messageAssociationContent);
-            logger.info("Liste de vols envoyée aux associations");
-            //Si nous n'avons aucun vols par rapport a la demande effectue
-            //Nous envoyons un REFUSE
-        /*} else {
-            response.setPerformative(ACLMessage.REFUSE);
-            logger.info("Pas de vols pour la date demandee");
-        }
-        //Si jamais le mapper venait a planter on aurait une erreur de format de donnees
-        logger.info("CONTENU RESPONSE : " + response.toString());*/
         return response;
     }
 
@@ -172,6 +206,10 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         //response.setContent(acceptedVols);
         return response;
     }
+
+    /*private void filterByDate(DemandeVols demandeVols, ArrayList<VolAssociation> volsProposes){
+        Date = demandeVols.getDate();
+    }*/
 }
 
 
