@@ -11,7 +11,7 @@ import java.util.List;
 public class filterTests {
 
     @Test
-    public void filterByCountriesTest(){
+    public void filterByCountriesTest() {
 
         //On recupere la liste des vols pertinents
         List<VolAssociation> volsChartersCorrespondantsALaDemandeGuinee = new ArrayList<>();
@@ -20,34 +20,34 @@ public class filterTests {
         List<VolAssociation> volsChartersCorrespondantsALaDemandeCameroun = new ArrayList<>();
         List<VolAssociation> volsChartersCorrespondantsALaDemandeSenegal = new ArrayList<>();
 
-        VolAssociation guinee1 = new VolAssociation("1", "Conacky","Guinee",new java.util.Date(),
+        VolAssociation guinee1 = new VolAssociation("1", "Conacky", "Guinee", new java.util.Date(),
                 40, 40, TypeVol.Charter);
 
-        VolAssociation guinee2 = new VolAssociation("2", "Conacky","Guinee",new java.util.Date(),
+        VolAssociation guinee2 = new VolAssociation("2", "Conacky", "Guinee", new java.util.Date(),
                 40, 40, TypeVol.Charter);
 
-        VolAssociation tunisie1 = new VolAssociation("3", "Tunis","Tunisie",new java.util.Date(),
+        VolAssociation tunisie1 = new VolAssociation("3", "Tunis", "Tunisie", new java.util.Date(),
                 40, 40, TypeVol.Charter);
 
-        VolAssociation tunisie2 = new VolAssociation("4", "Tunis","Tunisie",new java.util.Date(),
+        VolAssociation tunisie2 = new VolAssociation("4", "Tunis", "Tunisie", new java.util.Date(),
                 40, 40, TypeVol.Charter);
 
-        VolAssociation gambie1 = new VolAssociation("5", "Banjul","Gambie",new java.util.Date(),
+        VolAssociation gambie1 = new VolAssociation("5", "Banjul", "Gambie", new java.util.Date(),
                 40, 40, TypeVol.Charter);
 
-        VolAssociation gambie2 = new VolAssociation("6", "Banjul","Gambie",new java.util.Date(),
+        VolAssociation gambie2 = new VolAssociation("6", "Banjul", "Gambie", new java.util.Date(),
                 40, 40, TypeVol.Charter);
 
-        VolAssociation cameroun1 = new VolAssociation("7", "Dhouala","Cameroun",new java.util.Date(),
+        VolAssociation cameroun1 = new VolAssociation("7", "Dhouala", "Cameroun", new java.util.Date(),
                 40, 40, TypeVol.Charter);
 
-        VolAssociation cameroun2 = new VolAssociation("8", "Dhouala","Cameroun",new java.util.Date(),
+        VolAssociation cameroun2 = new VolAssociation("8", "Dhouala", "Cameroun", new java.util.Date(),
                 40, 40, TypeVol.Charter);
 
-        VolAssociation dakar1 = new VolAssociation("9", "Dakar","Senegal",new java.util.Date(),
+        VolAssociation dakar1 = new VolAssociation("9", "Dakar", "Senegal", new java.util.Date(),
                 40, 40, TypeVol.Charter);
 
-        VolAssociation dakar2 = new VolAssociation("10", "Dakar","Senegal",new java.util.Date(),
+        VolAssociation dakar2 = new VolAssociation("10", "Dakar", "Senegal", new java.util.Date(),
                 40, 40, TypeVol.Charter);
 
 
@@ -74,12 +74,10 @@ public class filterTests {
         }
 
         //System.out.println(volsChartersCorrespondantsALaDemandeCa);
-        filterByCapacite(demandeVols, volsChartersCorrespondantsALaDemandeGuinee);
 
+        //filterByCapacite(demandeVols, volsChartersCorrespondantsALaDemandeGuinee);
 
     }
 
-    private void filterByCapacite(DemandeVols demandeVols, List<VolAssociation> volsProposes){
-        volsProposes.stream().filter(vol -> demandeVols.getVolume() <= vol.getCapaciteLibre());
-    }
+
 }

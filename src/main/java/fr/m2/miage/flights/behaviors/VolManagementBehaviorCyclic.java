@@ -15,10 +15,6 @@ import jade.lang.acl.ACLMessage;
 import java.lang.reflect.Type;
 import java.util.*;
 
-//PROVISOIRE POUR TESTER L'INTERACTION
-//String message = "{\"pays\":\"Guinee\",\"date\":\"2017-01-01\",\"volume\":\"10\"}";
-//System.out.println("EN DUR "+message);
-
 public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 
     public static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(VolManagementBehaviorCyclic.class);
@@ -82,35 +78,35 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         List<VolAssociation> volsChartersCorrespondantsALaDemandeCameroun = new ArrayList<>();
         List<VolAssociation> volsChartersCorrespondantsALaDemandeSenegal = new ArrayList<>();
 
-        VolAssociation guinee1 = new VolAssociation("1", "Conacky","Guinee",new java.util.Date(),
-         40, 40, TypeVol.Charter);
+        VolAssociation guinee1 = new VolAssociation("1", "Conacky", "Guinee", new java.util.Date(),
+                40, 40, TypeVol.Charter);
 
-        VolAssociation guinee2 = new VolAssociation("2", "Conacky","Guinee",new java.util.Date(),
-         40, 40, TypeVol.Charter);
+        VolAssociation guinee2 = new VolAssociation("2", "Conacky", "Guinee", new java.util.Date(),
+                40, 40, TypeVol.Charter);
 
-        VolAssociation tunisie1 = new VolAssociation("3", "Tunis","Tunisie",new java.util.Date(),
-         40, 40, TypeVol.Charter);
+        VolAssociation tunisie1 = new VolAssociation("3", "Tunis", "Tunisie", new java.util.Date(),
+                40, 40, TypeVol.Charter);
 
-        VolAssociation tunisie2 = new VolAssociation("4", "Tunis","Tunisie",new java.util.Date(),
-         40, 40, TypeVol.Charter);
+        VolAssociation tunisie2 = new VolAssociation("4", "Tunis", "Tunisie", new java.util.Date(),
+                40, 40, TypeVol.Charter);
 
-        VolAssociation gambie1 = new VolAssociation("5", "Banjul","Gambie",new java.util.Date(),
-         40, 40, TypeVol.Charter);
+        VolAssociation gambie1 = new VolAssociation("5", "Banjul", "Gambie", new java.util.Date(),
+                40, 40, TypeVol.Charter);
 
-        VolAssociation gambie2 = new VolAssociation("6", "Banjul","Gambie",new java.util.Date(),
-         40, 40, TypeVol.Charter);
+        VolAssociation gambie2 = new VolAssociation("6", "Banjul", "Gambie", new java.util.Date(),
+                40, 40, TypeVol.Charter);
 
-        VolAssociation cameroun1 = new VolAssociation("7", "Dhouala","Cameroun",new java.util.Date(),
-         40, 40, TypeVol.Charter);
+        VolAssociation cameroun1 = new VolAssociation("7", "Dhouala", "Cameroun", new java.util.Date(),
+                40, 40, TypeVol.Charter);
 
-        VolAssociation cameroun2 = new VolAssociation("8", "Dhouala","Cameroun",new java.util.Date(),
-         40, 40, TypeVol.Charter);
+        VolAssociation cameroun2 = new VolAssociation("8", "Dhouala", "Cameroun", new java.util.Date(),
+                40, 40, TypeVol.Charter);
 
-        VolAssociation dakar1 = new VolAssociation("9", "Dakar","Senegal",new java.util.Date(),
-         40, 40, TypeVol.Charter);
+        VolAssociation dakar1 = new VolAssociation("9", "Dakar", "Senegal", new java.util.Date(),
+                40, 40, TypeVol.Charter);
 
-        VolAssociation dakar2 = new VolAssociation("10", "Dakar","Senegal",new java.util.Date(),
-         40, 40, TypeVol.Charter);
+        VolAssociation dakar2 = new VolAssociation("10", "Dakar", "Senegal", new java.util.Date(),
+                40, 40, TypeVol.Charter);
 
 
         volsChartersCorrespondantsALaDemandeGuinee.add(guinee1);
@@ -129,7 +125,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         volsChartersCorrespondantsALaDemandeSenegal.add(dakar2);
 
         List<VolAssociation> volsChartersCorrespondantsALaDemande = new ArrayList<>();
-        switch (demandeVols.getPays()){
+        switch (demandeVols.getPays()) {
             case "Guinee":
                 volsChartersCorrespondantsALaDemande = volsChartersCorrespondantsALaDemandeGuinee;
                 filterVols(demandeVols, volsChartersCorrespondantsALaDemande);
@@ -146,7 +142,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
                 break;
 
             case "Cameroun":
-                volsChartersCorrespondantsALaDemande =  volsChartersCorrespondantsALaDemandeCameroun;
+                volsChartersCorrespondantsALaDemande = volsChartersCorrespondantsALaDemandeCameroun;
                 filterVols(demandeVols, volsChartersCorrespondantsALaDemande);
                 break;
 
@@ -198,7 +194,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         for (VolAccepte volAccepte :
                 volAcceptes) {
             String idVol = volAccepte.getUuid();
-            Integer capaciteAUtiliser = volAccepte.getCapacite();
+            double capaciteAUtiliser = volAccepte.getCapacite();
             System.out.println(idVol + " " + capaciteAUtiliser);
             //fr.m2.miage.flights.Main.updateCapaciteVol(idVol, capaciteAUtiliser);
         }
@@ -206,20 +202,20 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         return response;
     }
 
-    private void filterByDate(DemandeVols demandeVols, List<VolAssociation> volsProposes){
-        Date dateDemande= demandeVols.getDate();
+    private void filterByDate(DemandeVols demandeVols, List<VolAssociation> volsProposes) {
+        Date dateDemande = demandeVols.getDate();
         volsProposes.stream().filter(vol -> !(isSameDay(dateDemande, vol.getDateArrivee())));
     }
 
-    private void filterByCapacite(DemandeVols demandeVols, List<VolAssociation> volsProposes){
-        volsProposes.stream().filter(vol -> !(demandeVols.getVolume() <= vol.getCapaciteLibre()));
+    private void filterByCapacite(DemandeVols demandeVols, List<VolAssociation> volsProposes) {
+        volsProposes.stream().filter(vol -> (demandeVols.getVolume() >= vol.getCapaciteLibre()));
     }
 
-    private void filterByCountry(DemandeVols demandeVols, List<VolAssociation> volsProposes){
+    private void filterByCountry(DemandeVols demandeVols, List<VolAssociation> volsProposes) {
         volsProposes.stream().filter(vol -> !(demandeVols.getPays().equals(vol.getPays())));
     }
 
-    private void filterVols(DemandeVols demandeVols, List<VolAssociation> volsProposes){
+    private void filterVols(DemandeVols demandeVols, List<VolAssociation> volsProposes) {
         filterByDate(demandeVols, volsProposes);
         filterByCapacite(demandeVols, volsProposes);
     }

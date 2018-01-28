@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 public class VolAccepte implements Serializable {
     private String uuid;
-    private Integer capacite;
+    private double capacite;
 
     public VolAccepte() {
     }
 
-    public VolAccepte(String uuid, Integer capacite) {
+    public VolAccepte(String uuid, double capacite) {
         this.uuid = uuid;
         this.capacite = capacite;
     }
@@ -22,11 +22,11 @@ public class VolAccepte implements Serializable {
         this.uuid = uuid;
     }
 
-    public Integer getCapacite() {
+    public double getCapacite() {
         return capacite;
     }
 
-    public void setCapacite(Integer capacite) {
+    public void setCapacite(double capacite) {
         this.capacite = capacite;
     }
 
