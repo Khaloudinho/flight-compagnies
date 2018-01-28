@@ -14,7 +14,7 @@ public class VolAssociation implements Serializable {
 
     private String pays;
 
-    private String dateArrivee;
+    private java.util.Date dateArrivee;
 
     private int capaciteLibre;
 
@@ -25,11 +25,11 @@ public class VolAssociation implements Serializable {
     public VolAssociation() {
     }
 
-    public VolAssociation(String idVol, String aeroport, String pays, Date dateArrivee, int capaciteLibre, int prix, TypeVol typeVol) {
+    public VolAssociation(String idVol, String aeroport, String pays, java.util.Date dateArrivee, int capaciteLibre, int prix, TypeVol typeVol) {
         this.idVol = idVol;
         this.aeroport = aeroport;
         this.pays = pays;
-        this.dateArrivee = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(dateArrivee).toString();
+        this.dateArrivee = dateArrivee;
         //this.dateArrivee = dateArrivee;
         this.capaciteLibre = capaciteLibre;
         this.prix = prix;
@@ -60,11 +60,11 @@ public class VolAssociation implements Serializable {
         this.pays = pays;
     }
 
-    public String getDateArrivee() {
+    public java.util.Date getDateArrivee() {
         return dateArrivee;
     }
 
-    public void setDateArrivee(String dateArrivee) {
+    public void setDateArrivee(java.util.Date dateArrivee) {
         this.dateArrivee = dateArrivee;
     }
 

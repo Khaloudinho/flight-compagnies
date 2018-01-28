@@ -36,9 +36,9 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         if (aclMessage != null) {
             switch (aclMessage.getPerformative()) {
                 case ACLMessage.CFP:
-                    ACLMessage vols = aclMessage.createReply();
-                    vols.setPerformative(ACLMessage.PROPOSE);
-                    //vols = manageCFP(aclMessage);
+                    //ACLMessage vols = aclMessage.createReply();
+                    //vols.setPerformative(ACLMessage.PROPOSE);
+                    ACLMessage vols = manageCFP(aclMessage);
                     myAgent.send(vols);
                     break;
 
@@ -80,7 +80,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         demandeVols = gson.fromJson(message, DemandeVols.class);
 
         //On recupere la liste des vols pertinents
-        ArrayList<VolAssociation> volsChartersCorrespondantsALaDemande = new ArrayList<VolAssociation>();
+        ArrayList<VolAssociation> volsChartersCorrespondantsALaDemande = new ArrayList<>();
         VolAssociation volAssociation = new VolAssociation("test", "Leopold san", "Guinee",
                 new java.util.Date(), 40, 40, TypeVol.Charter);
 
@@ -88,7 +88,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         //VolAssociation volAssociation2 = new VolAssociation("test2", "Leopold san","Guinee",new java.util.Date(), 40, 40, TypeVol.Charter);
         //volsChartersCorrespondantsALaDemande.add(volAssociation2);
         //ArrayList<VolAssociation> volAssociations = Seeder.getVols(TypeVol.Charter, demandeVols.getDate(), demandeVols.getPays(), demandeVols.getVolume());
-        volsChartersCorrespondantsALaDemande = new ArrayList<>();
+        //volsChartersCorrespondantsALaDemande = new ArrayList<>();
         //VolAssociation vtest = volAssociations.get(0);
         volsChartersCorrespondantsALaDemande.add(volAssociation);
 
@@ -96,16 +96,14 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         logger.info("TAILLE LISTE VOLS : " + tailleListeVols);
 
         //On transforme cette de liste de resultats en JSON
-        String messageAssociationContent = "";
-
-        messageAssociationContent = gson.toJson(volsChartersCorrespondantsALaDemande);
+        String messageAssociationContent = gson.toJson(volsChartersCorrespondantsALaDemande);
 
         //Si la liste contient au moins 1 vol
         //On va envoyer cette liste avec le type PROPOSE
         if (tailleListeVols > 0) {
             response.setPerformative(ACLMessage.PROPOSE);
             response.setContent(messageAssociationContent);
-            logger.info("Liste de vols envoyee aux associations");
+            logger.info("Liste de vols envoyée aux associations");
             //Si nous n'avons aucun vols par rapport a la demande effectue
             //Nous envoyons un REFUSE
         } else {
