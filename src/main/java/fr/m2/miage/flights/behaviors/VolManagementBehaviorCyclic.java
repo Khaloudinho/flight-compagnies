@@ -68,7 +68,6 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
      * @param cfp message
      * @return message..
      */
-    //{"pays":"Guinee","date":"May 16, 2017 09:10:10 AM","volume":"10"}
     private ACLMessage manageCFP(ACLMessage cfp) {
         //On recupere la demande
         //String message = cfp.getContent();
@@ -90,16 +89,6 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
                 .getResultList();
         session.close();
 
-        for (Vol v : volsEnBase) {
-            VolAssociation volAssociation = new VolAssociation(v.getIdVol(), v.getAeroportArrivee().getNomAeroport(), v.getAeroportArrivee().getLieu().getPays(),
-                    v.getDateArrivee(), v.getAvion().getCapaciteSoute(), v.getPrixDeVente(), TypeVol.Charter);
-            volsChartersCorrespondantsALaDemande.add(volAssociation);
-        }
-
-        for (VolAssociation v : volsChartersCorrespondantsALaDemande) {
-            System.out.println(v.toString());
-        }
-
         /*VolAssociation volAssociation2 = new VolAssociation("test2", "Leopold san","Guinee",new java.util.Date(),
          40, 40, TypeVol.Charter);
         volsChartersCorrespondantsALaDemande.add(volAssociation2);*/
@@ -111,11 +100,11 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         //VolAssociation vtest = volAssociations.get(0);
         //volsChartersCorrespondantsALaDemande.add(volAssociation);
 
-        int tailleListeVols = volsChartersCorrespondantsALaDemande.size();
+        int tailleListeVols = volsEnBase.size();
         logger.info("TAILLE LISTE VOLS : " + tailleListeVols);
 
         //On transforme cette de liste de resultats en JSON
-        String messageAssociationContent = gson.toJson(volsChartersCorrespondantsALaDemande);
+        String messageAssociationContent = gson.toJson(volsEnBase);
 
         //Si la liste contient au moins 1 vol
         //On va envoyer cette liste avec le type PROPOSE

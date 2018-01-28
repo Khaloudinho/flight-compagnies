@@ -33,7 +33,7 @@ public class Main {
 
         //demandeVols = gson.fromJson(message, DemandeVols.class);
 
-        System.out.println("Réguliers : " + volsReguliersInJSON);
+        System.out.println("Reguliers : " + volsReguliersInJSON);
 
         return volsPourLesAssociation;
     }
@@ -57,10 +57,10 @@ public class Main {
     public static void showFlightsResults(List<Object[]> volsChartersCorrespondantsALaDemande) {
         for (Object[] o : volsChartersCorrespondantsALaDemande) {
             System.out.println("============== VOL CORRESPONDANT ==============");
-            System.out.println("Aéroport : " + o[0].toString());
+            System.out.println("Aeroport : " + o[0].toString());
             System.out.println("Pays : " + o[1].toString());
-            System.out.println("Date arrivée : " + o[2].toString());
-            System.out.println("Capacité libre : " + o[3].toString());
+            System.out.println("Date arrivee : " + o[2].toString());
+            System.out.println("Capacite libre : " + o[3].toString());
             System.out.println("Prix : " + o[4].toString());
             System.out.println("IdVol : " + o[5].toString());
             System.out.println("========================================================");
@@ -90,7 +90,7 @@ public class Main {
 
         final int prixKeroseneParHeure = 1140;
 
-        System.out.println("Requête : Vol.calculerLesPrixDesVols");
+        System.out.println("Requete : Vol.calculerLesPrixDesVols");
         List<Vol> volsPourPrix = session.createNamedQuery("Vol.calculerLesPrixDesVols", Vol.class).getResultList();
         //List<Object[]> paramPourCalculerLesPrixDesVols = queryCalculerLesPrixDesVols.getResultList();
         //Map<String, Integer> tousLesPrix = new HashMap<>();
@@ -114,7 +114,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // On peut récupérer globalement des sessions
+        // On peut recuperer globalement des sessions
         Session session = getSessionFactory().openSession();
         session.beginTransaction(); // Ouvre la tx
 
@@ -170,37 +170,37 @@ public class Main {
 
         Set<Aeroport> aeroports = new HashSet<>();
         Aeroport a1 = new Aeroport();
-        a1.setNomAeroport("Aéroport international de Conakry"); // Guinee
+        a1.setNomAeroport("Aeroport international de Conakry"); // Guinee
         a1.setTaxeAeroport((int) (Math.random() * 1000 + 1500));
         a1.setHeuresVolDepuisParis(8);
         a1.setLieu(l1);
 
         Aeroport a2 = new Aeroport();
-        a2.setNomAeroport("Aéroport international Léopold-Sédar-Senghor"); // Senegal
+        a2.setNomAeroport("Aeroport international Leopold-Sedar-Senghor"); // Senegal
         a2.setTaxeAeroport((int) (Math.random() * 1000 + 1500));
         a2.setHeuresVolDepuisParis(6);
         a2.setLieu(l2);
 
         Aeroport a3 = new Aeroport();
-        a3.setNomAeroport("Aéroport international de Banjul - Yundum"); // Gambie
+        a3.setNomAeroport("Aeroport international de Banjul - Yundum"); // Gambie
         a3.setTaxeAeroport((int) (Math.random() * 1000 + 1500));
         a3.setHeuresVolDepuisParis(8);
         a3.setLieu(l3);
 
         Aeroport a4 = new Aeroport();
-        a4.setNomAeroport("Aéroport international Félix-Houphouët-Boigny"); // Cote ivoire
+        a4.setNomAeroport("Aeroport international Felix-Houphouet-Boigny"); // Cote ivoire
         a4.setTaxeAeroport((int) (Math.random() * 1000 + 1500));
         a4.setHeuresVolDepuisParis(7);
         a4.setLieu(l4);
 
         Aeroport a5 = new Aeroport();
-        a5.setNomAeroport("Aéroport international de Douala"); // Cameroun
+        a5.setNomAeroport("Aeroport international de Douala"); // Cameroun
         a5.setTaxeAeroport((int) (Math.random() * 1000 + 1500));
         a5.setHeuresVolDepuisParis(7);
         a5.setLieu(l5);
 
         Aeroport a6 = new Aeroport();
-        a6.setNomAeroport("Aéroport international de Gaborone"); // Bostwana
+        a6.setNomAeroport("Aeroport international de Gaborone"); // Bostwana
         a6.setTaxeAeroport((int) (Math.random() * 1000 + 1500));
         a6.setHeuresVolDepuisParis(10);
         a6.setLieu(l6);
