@@ -1,36 +1,26 @@
 package fr.m2.miage.flights.discuss;
 
-import fr.m2.miage.flights.util.TypeVol;
-
 import java.io.Serializable;
 
 public class VolAssociation implements Serializable {
 
     private String idVol;
-
     private String aeroport;
-
     private String pays;
-
     private java.util.Date dateArrivee;
-
-    private double capaciteLibre;
-
+    private double volume;
     private double prix;
-
-    private TypeVol typeVol;
 
     public VolAssociation() {
     }
 
-    public VolAssociation(String idVol, String aeroport, String pays, java.util.Date dateArrivee, double capaciteLibre, double prix, TypeVol typeVol) {
+    public VolAssociation(String idVol, String aeroport, String pays, java.util.Date dateArrivee, double volume, double prix) {
         this.idVol = idVol;
         this.aeroport = aeroport;
         this.pays = pays;
         this.dateArrivee = dateArrivee;
-        this.capaciteLibre = capaciteLibre;
+        this.volume = volume;
         this.prix = prix;
-        this.typeVol = typeVol;
     }
 
     public String getIdVol() {
@@ -66,11 +56,11 @@ public class VolAssociation implements Serializable {
     }
 
     public double getCapaciteLibre() {
-        return capaciteLibre;
+        return volume;
     }
 
-    public void setCapaciteLibre(double capaciteLibre) {
-        this.capaciteLibre = capaciteLibre;
+    public void setCapaciteLibre(double volume) {
+        this.volume = volume;
     }
 
     public double getPrix() {
@@ -81,12 +71,12 @@ public class VolAssociation implements Serializable {
         this.prix = prix;
     }
 
-    public TypeVol getTypeVol() {
-        return typeVol;
+    public double getVolume() {
+        return volume;
     }
 
-    public void setTypeVol(TypeVol typeVol) {
-        this.typeVol = typeVol;
+    public void setVolume(double volume) {
+        this.volume = volume;
     }
 
     @Override
@@ -96,9 +86,8 @@ public class VolAssociation implements Serializable {
                 ", aeroport='" + aeroport + '\'' +
                 ", pays='" + pays + '\'' +
                 ", dateArrivee='" + dateArrivee + '\'' +
-                ", capaciteLibre=" + capaciteLibre +
+                ", volume=" + volume +
                 ", prix=" + prix +
-                ", typeVol=" + typeVol +
                 '}';
     }
 }

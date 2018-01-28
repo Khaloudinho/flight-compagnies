@@ -10,7 +10,6 @@ public class EnregistrementService {
 
     public static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(EnregistrementService.class);
 
-
     public static boolean enregistrer(Agent agent, String serviceName, String serviceType) {
         boolean registerState = false;
 
@@ -26,12 +25,12 @@ public class EnregistrementService {
 
         try {
             DFService.register(agent, dfa);
-            logger.info("Agent: " + serviceName + " de type: " + serviceType + " enregistre");
+            logger.info("Agent: " + serviceName + " de type: " + serviceType + " s'enregistre");
             registerState = true;
         } catch (FIPAException e) {
             e.printStackTrace();
 
-            logger.error(agent.getLocalName() + " erreur lors de l'enregistrement", e);
+            logger.error(agent.getLocalName() + ": erreur lors de l'enregistrement", e);
 
             agent.doDelete();
         }
@@ -51,10 +50,10 @@ public class EnregistrementService {
         dfd.addServices(sd);
         try {
             DFService.deregister(agent, dfd);
-            System.out.println("--------" + agent + " est desincrit " + serviceType + "/" + serviceName);
+            System.out.println("--------" + agent + " est désincrit " + serviceType + "/" + serviceName);
             unregisterState = true;
         } catch (FIPAException e) {
-            System.err.println(agent.getLocalName() + " registration with DF unsucceeded. Reason: " + e.getMessage());
+            System.err.println(agent.getLocalName() + " inscription échouée pour cause de : " + e.getMessage());
             agent.doDelete();
         }
         return unregisterState;

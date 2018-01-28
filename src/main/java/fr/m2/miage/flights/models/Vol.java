@@ -1,69 +1,45 @@
 package fr.m2.miage.flights.models;
 
-import fr.m2.miage.flights.util.TypeVol;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
 
-@Entity
 @NamedQueries({
         @NamedQuery(
-                name = "Vol.getVolsCorrespondantsALaDemande",
-                query = "SELECT v.aeroportArrivee.nomAeroport, v.aeroportArrivee.lieu.pays, " +
-                        "v.dateArrivee, v.capaciteLibre, v.prixDeVente, " +
-                        "v.idVol " +
-                        "FROM Vol v " +
-                        "WHERE v.dateArrivee = :date " +
-                        "AND v.aeroportArrivee.lieu.pays = :pays " +
-                        "AND v.capaciteLibre >= :capaciteLibre " +
-                        "AND v.typeVol = :typeVol "),
-
-        @NamedQuery(
-                name = "Vol.calculerLesPrixDesVols",
-                query = "SELECT v FROM Vol v "
+                name = "getVolsMatchingDemand",
+                query = "select v from Vol v " +
+                        "where v.pays = :pays " +
+                        "and v.volume > :volume " +
+                        "and v.dateArrivee between :dateInf and :dateSup "
         ),
         @NamedQuery(
-                name = "Vol.updateCapaciteLibreVol",
-                query = "UPDATE Vol v SET v.capaciteLibre = (v.capaciteLibre-:capacitePrise) WHERE v.id = :idVol "
-        ),
+                name = "getVols",
+                query = "select v from Vol v " +
+                        "where v.pays = :pays "
+        )
 })
 
+@Entity
 public class Vol implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idVol;
-    private java.util.Date dateDepart;
+    private String pays;
     private java.util.Date dateArrivee;
-    private double prixCoutant, prixDeVente;
-
-    @Enumerated(EnumType.STRING)
-    private TypeVol typeVol;
-
-    @OneToOne
-    private Avion avion;
-
-    @OneToOne
-    private Aeroport aeroportArrivee;
-
-    @Column(nullable = true)
-    private double capaciteLibre;
+    private double volume;
+    private double prix;
 
     public Vol() {
     }
 
-    public Vol(java.util.Date dateDepart, java.util.Date dateArrivee, TypeVol typeVol, Avion avion, Aeroport aeroportArrivee, double capaciteLibre) {
-        this.dateDepart = dateDepart;
+    public Vol(String pays, java.util.Date dateArrivee, double volume, double prix) {
+        this.pays = pays;
         this.dateArrivee = dateArrivee;
-        this.typeVol = typeVol;
-        this.avion = avion;
-        this.aeroportArrivee = aeroportArrivee;
-        this.capaciteLibre = capaciteLibre;
-        this.prixCoutant = 0;
-        this.prixDeVente = 0;
+        this.volume = volume;
+        this.prix = prix;
     }
 
     public String getIdVol() {
@@ -74,16 +50,12 @@ public class Vol implements Serializable {
         this.idVol = idVol;
     }
 
-    public java.util.Date getDateDepart() {
-        return dateDepart;
+    public String getPays() {
+        return pays;
     }
 
-    public void setDateDepart(java.util.Date dateDepart) {
-        this.dateDepart = dateDepart;
-    }
-
-    public void setDateDepart(Date dateDepart) {
-        this.dateDepart = dateDepart;
+    public void setPays(String pays) {
+        this.pays = pays;
     }
 
     public java.util.Date getDateArrivee() {
@@ -94,55 +66,20 @@ public class Vol implements Serializable {
         this.dateArrivee = dateArrivee;
     }
 
-    public void setDateArrivee(Date dateArrivee) {
-        this.dateArrivee = dateArrivee;
+    public double getVolume() {
+        return volume;
     }
 
-    public TypeVol getTypeVol() {
-        return typeVol;
+    public void setVolume(double volume) {
+        this.volume = volume;
     }
 
-    public void setTypeVol(TypeVol typeVol) {
-        this.typeVol = typeVol;
+    public double getPrix() {
+        return prix;
     }
 
-    public Avion getAvion() {
-        return avion;
+    public void setPrix(double prix) {
+        this.prix = prix;
     }
 
-    public void setAvion(Avion avion) {
-        this.avion = avion;
-    }
-
-    public Aeroport getAeroportArrivee() {
-        return aeroportArrivee;
-    }
-
-    public void setAeroportArrivee(Aeroport aeroportArrivee) {
-        this.aeroportArrivee = aeroportArrivee;
-    }
-
-    public double getPrixCoutant() {
-        return prixCoutant;
-    }
-
-    public void setPrixCoutant(double prixCoutant) {
-        this.prixCoutant = prixCoutant;
-    }
-
-    public double getPrixDeVente() {
-        return prixDeVente;
-    }
-
-    public void setPrixDeVente(double prixDeVente) {
-        this.prixDeVente = prixDeVente;
-    }
-
-    public double getCapaciteLibre() {
-        return capaciteLibre;
-    }
-
-    public void setCapaciteLibre(double capaciteLibre) {
-        this.capaciteLibre = capaciteLibre;
-    }
 }
