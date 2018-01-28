@@ -33,7 +33,7 @@ public class VolAccepte implements Serializable {
     @Override
     public String toString() {
         return "VolAccepte{" +
-                "uuid='" + uuid + '\'' +
+                "UUID='" + uuid + '\'' +
                 ", capacite=" + capacite +
                 '}';
     }

@@ -1,7 +1,5 @@
 package fr.m2.miage.flights.discuss;
 
-import fr.m2.miage.flights.util.TypeVol;
-
 import java.io.Serializable;
 
 public class VolAssociation implements Serializable {
@@ -12,19 +10,17 @@ public class VolAssociation implements Serializable {
     private java.util.Date dateArrivee;
     private double volume;
     private double prix;
-    private TypeVol typeVol;
 
     public VolAssociation() {
     }
 
-    public VolAssociation(String idVol, String aeroport, String pays, java.util.Date dateArrivee, double volume, double prix, TypeVol typeVol) {
+    public VolAssociation(String idVol, String aeroport, String pays, java.util.Date dateArrivee, double volume, double prix) {
         this.idVol = idVol;
         this.aeroport = aeroport;
         this.pays = pays;
         this.dateArrivee = dateArrivee;
         this.volume = volume;
         this.prix = prix;
-        this.typeVol = typeVol;
     }
 
     public String getIdVol() {
@@ -75,14 +71,6 @@ public class VolAssociation implements Serializable {
         this.prix = prix;
     }
 
-    public TypeVol getTypeVol() {
-        return typeVol;
-    }
-
-    public void setTypeVol(TypeVol typeVol) {
-        this.typeVol = typeVol;
-    }
-
     public double getVolume() {
         return volume;
     }
@@ -100,7 +88,6 @@ public class VolAssociation implements Serializable {
                 ", dateArrivee='" + dateArrivee + '\'' +
                 ", volume=" + volume +
                 ", prix=" + prix +
-                ", typeVol=" + typeVol +
                 '}';
     }
 }

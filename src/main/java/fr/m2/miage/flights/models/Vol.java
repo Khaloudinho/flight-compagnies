@@ -4,16 +4,14 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
 
 @NamedQueries({
         @NamedQuery(
-                name = "getVolByPaysAndVolumeInf",
+                name = "getVolsMatchingDemand",
                 query = "select v from Vol v " +
                         "where v.pays = :pays " +
                         "and v.volume > :volume " +
-                        "and v.dateArrivee between :dateSup " +
-                        "and :dateInf "
+                        "and v.dateArrivee between :dateInf and :dateSup "
         ),
         @NamedQuery(
                 name = "getVols",

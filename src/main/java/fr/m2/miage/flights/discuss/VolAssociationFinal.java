@@ -1,11 +1,9 @@
 package fr.m2.miage.flights.discuss;
 
-import fr.m2.miage.flights.util.TypeVol;
-
 import java.io.Serializable;
 import java.util.Date;
 
-public class VolAssociationFinal implements Serializable{
+public class VolAssociationFinal implements Serializable {
 
     private String pays;
     private java.util.Date dateArrivee;

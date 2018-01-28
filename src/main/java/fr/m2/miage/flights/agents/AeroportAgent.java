@@ -8,9 +8,12 @@ import static fr.m2.miage.flights.services.HibernateSessionProvider.getSessionFa
 
 public class AeroportAgent extends Agent {
 
+    private static final String SERVICE_TYPE = "Airport";
+    private static final String SERVICE_NAME = "Creator";
+
     @Override
     protected void setup() {
-        RegisterService rs = new RegisterService(this, "test", "test");
+        RegisterService rs = new RegisterService(this, SERVICE_NAME, SERVICE_TYPE);
         this.addBehaviour(rs);
         CreateVolBehaviour cvb = new CreateVolBehaviour(this, 3000);
         this.addBehaviour(cvb);

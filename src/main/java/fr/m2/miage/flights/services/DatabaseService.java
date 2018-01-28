@@ -13,7 +13,7 @@ public class DatabaseService {
 
     private static final Logger logger = LoggerFactory.getLogger(DatabaseService.class);
 
-    public static String getRandomPays() {
+    private static String getRandomPays() {
         List<String> pays = new ArrayList<>();
         pays.add("Guinee");
         pays.add("Tunisie");
@@ -33,12 +33,12 @@ public class DatabaseService {
         java.util.Date dateArrivee = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(dateArrivee);
-        cal.add(Calendar.SECOND, + random.nextInt(240) + 1);
+        cal.add(Calendar.SECOND, +random.nextInt(240) + 1);
         dateArrivee = cal.getTime();
 
         // Volume au hasard entre 100 et 200
         double volume = 100 + 100 * random.nextDouble();
-        // prix entre 50 et 100
+        // Prix entre 50 et 100
         double prix = 50 + 50 * random.nextDouble();
 
         Vol vol = new Vol(pays, dateArrivee, volume, prix);
@@ -67,25 +67,25 @@ public class DatabaseService {
         session.close();
     }
 
-    public static List<Vol> getVolMatching(String pays, Double volume, java.util.Date date) {
+    public static List<Vol> getVolsMatching(String pays, Double volume, java.util.Date date) {
         Session session = getSessionFactory().openSession();
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        cal.add(Calendar.SECOND, -30);
+        cal.add(Calendar.MINUTE, -1);
         Date dateInf = cal.getTime();
 
         Calendar cal2 = Calendar.getInstance();
         cal2.setTime(date);
-        cal2.add(Calendar.SECOND, +30);
+        cal2.add(Calendar.MINUTE, +1);
         Date dateSup = cal2.getTime();
 
         List<Vol> vols = session
-                .createNamedQuery("getVolByPaysAndVolumeInf")
+                .createNamedQuery("getVolsMatchingDemand")
                 .setParameter("pays", pays)
                 .setParameter("volume", volume)
-                /*.setParameter("dateInf", dateInf)
-                .setParameter("dateSup", dateSup)*/
+                .setParameter("dateInf", dateInf)
+                .setParameter("dateSup", dateSup)
                 .getResultList();
         return vols;
     }
