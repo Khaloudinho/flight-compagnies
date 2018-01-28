@@ -13,12 +13,16 @@ import jade.domain.FIPANames;
 import jade.lang.acl.ACLMessage;
 
 import java.lang.reflect.Type;
+import java.security.acl.Acl;
 import java.util.*;
 
 public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 
     public static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(VolManagementBehaviorCyclic.class);
     private final Gson gson = new GsonBuilder().create();
+
+
+
 
     public VolManagementBehaviorCyclic(Agent agent) {
         super(agent);
@@ -38,8 +42,8 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
                     break;
 
                 case ACLMessage.ACCEPT_PROPOSAL:
-                    //ACLMessage acceptation = manageACCEPT_PROPOSAL(aclMessage);
-                    //myAgent.send(acceptation);
+                    ACLMessage acceptation = manageACCEPT_PROPOSAL(aclMessage);
+                    myAgent.send(acceptation);
                     break;
 
                 default:
@@ -79,34 +83,34 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         List<VolAssociation> volsChartersCorrespondantsALaDemandeSenegal = new ArrayList<>();
 
         VolAssociation guinee1 = new VolAssociation("1", "Conacky", "Guinee", new java.util.Date(),
-                40, 40, TypeVol.Charter);
+                40.0, 40.0, TypeVol.Charter);
 
         VolAssociation guinee2 = new VolAssociation("2", "Conacky", "Guinee", new java.util.Date(),
-                40, 40, TypeVol.Charter);
+                40.0, 40.0, TypeVol.Charter);
 
         VolAssociation tunisie1 = new VolAssociation("3", "Tunis", "Tunisie", new java.util.Date(),
-                40, 40, TypeVol.Charter);
+                40.0, 40.0, TypeVol.Charter);
 
         VolAssociation tunisie2 = new VolAssociation("4", "Tunis", "Tunisie", new java.util.Date(),
-                40, 40, TypeVol.Charter);
+                40.0, 40.0, TypeVol.Charter);
 
         VolAssociation gambie1 = new VolAssociation("5", "Banjul", "Gambie", new java.util.Date(),
-                40, 40, TypeVol.Charter);
+                40.0, 40.0, TypeVol.Charter);
 
         VolAssociation gambie2 = new VolAssociation("6", "Banjul", "Gambie", new java.util.Date(),
-                40, 40, TypeVol.Charter);
+                40.0, 40.0, TypeVol.Charter);
 
         VolAssociation cameroun1 = new VolAssociation("7", "Dhouala", "Cameroun", new java.util.Date(),
-                40, 40, TypeVol.Charter);
+                40.0, 40.0, TypeVol.Charter);
 
         VolAssociation cameroun2 = new VolAssociation("8", "Dhouala", "Cameroun", new java.util.Date(),
-                40, 40, TypeVol.Charter);
+                40.0, 40.0, TypeVol.Charter);
 
         VolAssociation dakar1 = new VolAssociation("9", "Dakar", "Senegal", new java.util.Date(),
-                40, 40, TypeVol.Charter);
+                40.0, 40.0, TypeVol.Charter);
 
         VolAssociation dakar2 = new VolAssociation("10", "Dakar", "Senegal", new java.util.Date(),
-                40, 40, TypeVol.Charter);
+                40.0, 40.0, TypeVol.Charter);
 
 
         volsChartersCorrespondantsALaDemandeGuinee.add(guinee1);
@@ -171,24 +175,15 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
      {"uuid":"c0a7cbdc-ac69-470f-997a-465a7d0fc584", "capacite":20}]*/
     //!\prevoir cas capacite trop grosse ?
     private ACLMessage manageACCEPT_PROPOSAL(ACLMessage acceptProposal) {
-
-        //FIX ME @sana
-        //trouver un moyen de connaitre la quantite d'argent gagne (par rapport a la liste communique) : liste des vols est de leur prix attribut ?
-        //match/intersect des deux liste
-        //recuperation du prix mise dans notre portefeuille = attribut representant l'argent de l'agent
-
-        //Suite la premiere demande nous recuperons une liste de vols desires
         String volsChoisis = acceptProposal.getContent();
-        logger.info("Liste de vols acceptes (idVol, capacite) : \n" + volsChoisis);
+        logger.info("Liste de vols acceptes par ANNE : \n" + volsChoisis);
 
-        //Nous preparons une confirmation du traitement
         ACLMessage response = acceptProposal.createReply();
         response.setPerformative(ACLMessage.INFORM);
 
-        //On doit faire un petit hack pour remapper leurs vols
-        Type collectionType = new TypeToken<Collection<VolAccepte>>() {
+        Type collectionType = new TypeToken<Collection<VolAssociation>>() {
         }.getType();
-        ArrayList<VolAccepte> volAcceptes = gson.fromJson(volsChoisis, collectionType);
+        ArrayList<VolAssociation> volAcceptes = gson.fromJson(volsChoisis, collectionType);
 
         //On met a jour l'etat de la base de donnees
         for (VolAccepte volAccepte :
@@ -199,6 +194,10 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
             //fr.m2.miage.flights.Main.updateCapaciteVol(idVol, capaciteAUtiliser);
         }
         //response.setContent(acceptedVols);
+        return response;
+        */
+
+        System.out.println(response.getContent().toString());
         return response;
     }
 

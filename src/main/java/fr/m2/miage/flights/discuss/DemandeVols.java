@@ -8,12 +8,12 @@ public class DemandeVols implements Serializable {
 
     private String pays;
     private Date date;
-    private Integer volume;
+    private double volume;
 
     public DemandeVols() {
     }
 
-    public DemandeVols(String pays, Date date, Integer volume) throws ParseException {
+    public DemandeVols(String pays, Date date, double volume) throws ParseException {
         this.pays = pays;
         this.date = date;
         this.volume = volume;
@@ -35,7 +35,7 @@ public class DemandeVols implements Serializable {
         this.date = date;
     }
 
-    public Integer getVolume() {
+    public double getVolume() {
         return volume;
     }
 
