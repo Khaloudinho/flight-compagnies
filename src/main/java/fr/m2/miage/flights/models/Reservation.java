@@ -1,5 +1,6 @@
 package fr.m2.miage.flights.models;
 
+import fr.m2.miage.flights.util.EtatReservation;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

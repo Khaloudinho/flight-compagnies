@@ -1,5 +1,6 @@
 package fr.m2.miage.flights.models;
 
+import fr.m2.miage.flights.util.TypeVol;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -49,12 +50,12 @@ public class Vol implements Serializable {
     private Aeroport aeroportArrivee;
 
     @Column(nullable = true)
-    private int capaciteLibre;
+    private double capaciteLibre;
 
     public Vol() {
     }
 
-    public Vol(java.util.Date dateDepart, java.util.Date dateArrivee, TypeVol typeVol, Avion avion, Aeroport aeroportArrivee, int capaciteLibre) {
+    public Vol(java.util.Date dateDepart, java.util.Date dateArrivee, TypeVol typeVol, Avion avion, Aeroport aeroportArrivee, double capaciteLibre) {
         this.dateDepart = dateDepart;
         this.dateArrivee = dateArrivee;
         this.typeVol = typeVol;
@@ -77,12 +78,20 @@ public class Vol implements Serializable {
         return dateDepart;
     }
 
+    public void setDateDepart(java.util.Date dateDepart) {
+        this.dateDepart = dateDepart;
+    }
+
     public void setDateDepart(Date dateDepart) {
         this.dateDepart = dateDepart;
     }
 
     public java.util.Date getDateArrivee() {
         return dateArrivee;
+    }
+
+    public void setDateArrivee(java.util.Date dateArrivee) {
+        this.dateArrivee = dateArrivee;
     }
 
     public void setDateArrivee(Date dateArrivee) {
@@ -127,5 +136,13 @@ public class Vol implements Serializable {
 
     public void setPrixDeVente(double prixDeVente) {
         this.prixDeVente = prixDeVente;
+    }
+
+    public double getCapaciteLibre() {
+        return capaciteLibre;
+    }
+
+    public void setCapaciteLibre(double capaciteLibre) {
+        this.capaciteLibre = capaciteLibre;
     }
 }

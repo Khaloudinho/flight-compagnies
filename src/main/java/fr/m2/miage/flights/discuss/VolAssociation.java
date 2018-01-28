@@ -1,6 +1,6 @@
 package fr.m2.miage.flights.discuss;
 
-import fr.m2.miage.flights.models.TypeVol;
+import fr.m2.miage.flights.util.TypeVol;
 
 import java.io.Serializable;
 
@@ -14,7 +14,7 @@ public class VolAssociation implements Serializable {
 
     private java.util.Date dateArrivee;
 
-    private int capaciteLibre;
+    private double capaciteLibre;
 
     private double prix;
 
@@ -23,12 +23,11 @@ public class VolAssociation implements Serializable {
     public VolAssociation() {
     }
 
-    public VolAssociation(String idVol, String aeroport, String pays, java.util.Date dateArrivee, int capaciteLibre, double prix, TypeVol typeVol) {
+    public VolAssociation(String idVol, String aeroport, String pays, java.util.Date dateArrivee, double capaciteLibre, double prix, TypeVol typeVol) {
         this.idVol = idVol;
         this.aeroport = aeroport;
         this.pays = pays;
         this.dateArrivee = dateArrivee;
-        //this.dateArrivee = dateArrivee;
         this.capaciteLibre = capaciteLibre;
         this.prix = prix;
         this.typeVol = typeVol;
@@ -66,11 +65,11 @@ public class VolAssociation implements Serializable {
         this.dateArrivee = dateArrivee;
     }
 
-    public int getCapaciteLibre() {
+    public double getCapaciteLibre() {
         return capaciteLibre;
     }
 
-    public void setCapaciteLibre(int capaciteLibre) {
+    public void setCapaciteLibre(double capaciteLibre) {
         this.capaciteLibre = capaciteLibre;
     }
 

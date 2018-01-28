@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import fr.m2.miage.flights.discuss.VolAssociation;
 import fr.m2.miage.flights.models.*;
+import fr.m2.miage.flights.util.TypeVol;
 import org.hibernate.Session;
 
 import javax.persistence.Query;
@@ -17,7 +18,7 @@ import static fr.m2.miage.flights.services.HibernateSessionProvider.getSessionFa
 public class Main {
     private static final Gson gson = new GsonBuilder().create();
 
-    public static ArrayList<VolAssociation> getVols(TypeVol typeVol, String date, String pays, int capaciteLibre) {
+    public static ArrayList<VolAssociation> getVols(TypeVol typeVol, String date, String pays, double capaciteLibre) {
 
         String query = "Vol.getVolsCorrespondantsALaDemande";
         ArrayList<VolAssociation> volsPourLesAssociation;
@@ -38,7 +39,7 @@ public class Main {
         return volsPourLesAssociation;
     }
 
-    public static List<Object[]> daoGetvols(TypeVol typeVol, String query, String date, String pays, int capaciteLibre) {
+    public static List<Object[]> daoGetvols(TypeVol typeVol, String query, String date, String pays, double capaciteLibre) {
         Session session = getSessionFactory().openSession();
 
         Query queryVolsReguliersCorrespondantsALaDemande = session.createNamedQuery(query, Object[].class);
