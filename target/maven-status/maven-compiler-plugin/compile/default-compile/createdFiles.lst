@@ -7,7 +7,6 @@ fr\m2\miage\pharma\models\Lieu.class
 fr\m2\miage\pharma\services\HibernateSessionProvider.class
 fr\m2\miage\pharma\models\Abonne.class
 fr\m2\miage\pharma\models\Aeroport.class
-Main.class
 fr\m2\miage\pharma\discuss\VolAssociation.class
 fr\m2\miage\pharma\discuss\DemandeVols.class
 fr\m2\miage\pharma\models\Avion.class
@@ -16,6 +15,7 @@ fr\m2\miage\pharma\models\Abonnement.class
 fr\m2\miage\pharma\behaviors\VolManagementBehaviorCyclic.class
 fr\m2\miage\pharma\behaviors\VolManagementBehaviorCyclic$1.class
 fr\m2\miage\pharma\models\Reservation.class
+fr\m2\miage\pharma\Main.class
 fr\m2\miage\pharma\services\EnregistrementService.class
 fr\m2\miage\pharma\discuss\VolAccepte.class
 fr\m2\miage\pharma\models\Vol.class

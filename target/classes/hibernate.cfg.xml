@@ -20,7 +20,7 @@
             org.hibernate.cache.internal.NoCachingRegionFactory
         </property>
 
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
 
         <mapping class="fr.m2.miage.pharma.models.Abonne"/>
         <mapping class="fr.m2.miage.pharma.models.Abonnement"/>

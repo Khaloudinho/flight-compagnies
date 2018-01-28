@@ -1,4 +1,4 @@
-package fr.m2.miage.pharma.services;
+package fr.m2.miage.flights.services;
 
 import jade.core.Agent;
 import jade.domain.DFService;

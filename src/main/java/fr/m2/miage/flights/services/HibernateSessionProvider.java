@@ -1,4 +1,4 @@
-package fr.m2.miage.pharma.services;
+package fr.m2.miage.flights.services;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

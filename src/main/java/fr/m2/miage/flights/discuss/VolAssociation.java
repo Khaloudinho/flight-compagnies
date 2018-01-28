@@ -1,10 +1,8 @@
-package fr.m2.miage.pharma.discuss;
+package fr.m2.miage.flights.discuss;
 
-import fr.m2.miage.pharma.models.TypeVol;
+import fr.m2.miage.flights.models.TypeVol;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.util.Date;
 
 public class VolAssociation implements Serializable {
 
@@ -18,14 +16,14 @@ public class VolAssociation implements Serializable {
 
     private int capaciteLibre;
 
-    private int prix;
+    private double prix;
 
     private TypeVol typeVol;
 
     public VolAssociation() {
     }
 
-    public VolAssociation(String idVol, String aeroport, String pays, java.util.Date dateArrivee, int capaciteLibre, int prix, TypeVol typeVol) {
+    public VolAssociation(String idVol, String aeroport, String pays, java.util.Date dateArrivee, int capaciteLibre, double prix, TypeVol typeVol) {
         this.idVol = idVol;
         this.aeroport = aeroport;
         this.pays = pays;
@@ -76,11 +74,11 @@ public class VolAssociation implements Serializable {
         this.capaciteLibre = capaciteLibre;
     }
 
-    public long getPrix() {
+    public double getPrix() {
         return prix;
     }
 
-    public void setPrix(int prix) {
+    public void setPrix(double prix) {
         this.prix = prix;
     }
 

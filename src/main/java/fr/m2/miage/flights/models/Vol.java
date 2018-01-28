@@ -1,4 +1,4 @@
-package fr.m2.miage.pharma.models;
+package fr.m2.miage.flights.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -35,8 +35,8 @@ public class Vol implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idVol;
-    private Date dateDepart;
-    private Date dateArrivee;
+    private java.util.Date dateDepart;
+    private java.util.Date dateArrivee;
     private double prixCoutant, prixDeVente;
 
     @Enumerated(EnumType.STRING)
@@ -54,7 +54,7 @@ public class Vol implements Serializable {
     public Vol() {
     }
 
-    public Vol(Date dateDepart, Date dateArrivee, TypeVol typeVol, Avion avion, Aeroport aeroportArrivee, int capaciteLibre) {
+    public Vol(java.util.Date dateDepart, java.util.Date dateArrivee, TypeVol typeVol, Avion avion, Aeroport aeroportArrivee, int capaciteLibre) {
         this.dateDepart = dateDepart;
         this.dateArrivee = dateArrivee;
         this.typeVol = typeVol;
@@ -73,7 +73,7 @@ public class Vol implements Serializable {
         this.idVol = idVol;
     }
 
-    public Date getDateDepart() {
+    public java.util.Date getDateDepart() {
         return dateDepart;
     }
 
@@ -81,7 +81,7 @@ public class Vol implements Serializable {
         this.dateDepart = dateDepart;
     }
 
-    public Date getDateArrivee() {
+    public java.util.Date getDateArrivee() {
         return dateArrivee;
     }
 

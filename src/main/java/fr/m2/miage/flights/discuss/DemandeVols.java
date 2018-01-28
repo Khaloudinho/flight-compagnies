@@ -1,4 +1,4 @@
-package fr.m2.miage.pharma.discuss;
+package fr.m2.miage.flights.discuss;
 
 import java.io.Serializable;
 import java.text.ParseException;

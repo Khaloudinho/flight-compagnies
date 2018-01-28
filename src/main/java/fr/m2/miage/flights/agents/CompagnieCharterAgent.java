@@ -1,10 +1,10 @@
-package fr.m2.miage.pharma.agents;
+package fr.m2.miage.flights.agents;
 
-import fr.m2.miage.pharma.behaviors.RegisterService;
-import fr.m2.miage.pharma.behaviors.VolManagementBehaviorCyclic;
+import fr.m2.miage.flights.behaviors.RegisterService;
+import fr.m2.miage.flights.behaviors.VolManagementBehaviorCyclic;
 import jade.core.Agent;
 
-import static fr.m2.miage.pharma.services.HibernateSessionProvider.getSessionFactory;
+import static fr.m2.miage.flights.services.HibernateSessionProvider.getSessionFactory;
 
 public class CompagnieCharterAgent extends Agent implements Compagnie {
 

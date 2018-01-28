@@ -1,4 +1,4 @@
-package fr.m2.miage.pharma.models;
+package fr.m2.miage.flights.models;
 
 public enum EtatReservation {
     encours, validee, annulee;

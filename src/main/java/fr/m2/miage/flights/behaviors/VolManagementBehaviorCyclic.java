@@ -1,20 +1,25 @@
-package fr.m2.miage.pharma.behaviors;
+package fr.m2.miage.flights.behaviors;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import fr.m2.miage.pharma.discuss.DemandeVols;
-import fr.m2.miage.pharma.discuss.VolAccepte;
-import fr.m2.miage.pharma.discuss.VolAssociation;
-import fr.m2.miage.pharma.models.TypeVol;
+import fr.m2.miage.flights.discuss.DemandeVols;
+import fr.m2.miage.flights.discuss.VolAccepte;
+import fr.m2.miage.flights.discuss.VolAssociation;
+import fr.m2.miage.flights.models.TypeVol;
+import fr.m2.miage.flights.models.Vol;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.FIPANames;
 import jade.lang.acl.ACLMessage;
+import org.hibernate.Session;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
+import static fr.m2.miage.flights.services.HibernateSessionProvider.getSessionFactory;
 
 //PROVISOIRE POUR TESTER L'INTERACTION
 //String message = "{\"pays\":\"Guinee\",\"date\":\"2017-01-01\",\"volume\":\"10\"}";
@@ -75,22 +80,36 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         response.setProtocol(FIPANames.InteractionProtocol.FIPA_CONTRACT_NET);
 
         //On mappe de notre cote la demande
-        DemandeVols demandeVols;
-
-        demandeVols = gson.fromJson(message, DemandeVols.class);
+        DemandeVols demandeVols = gson.fromJson(message, DemandeVols.class);
 
         //On recupere la liste des vols pertinents
-        ArrayList<VolAssociation> volsChartersCorrespondantsALaDemande = new ArrayList<>();
-        VolAssociation volAssociation = new VolAssociation("test", "Leopold san", "Guinee",
-                new java.util.Date(), 40, 40, TypeVol.Charter);
+        List<VolAssociation> volsChartersCorrespondantsALaDemande = new ArrayList<>();
+        Session session = getSessionFactory().openSession();
+        List<Vol> volsEnBase = session
+                .createNamedQuery("Vol.calculerLesPrixDesVols", Vol.class)
+                .getResultList();
+        session.close();
 
-        //volsChartersCorrespondantsALaDemande.add(volAssociation);
-        //VolAssociation volAssociation2 = new VolAssociation("test2", "Leopold san","Guinee",new java.util.Date(), 40, 40, TypeVol.Charter);
-        //volsChartersCorrespondantsALaDemande.add(volAssociation2);
-        //ArrayList<VolAssociation> volAssociations = Seeder.getVols(TypeVol.Charter, demandeVols.getDate(), demandeVols.getPays(), demandeVols.getVolume());
+        for (Vol v : volsEnBase) {
+            VolAssociation volAssociation = new VolAssociation(v.getIdVol(), v.getAeroportArrivee().getNomAeroport(), v.getAeroportArrivee().getLieu().getPays(),
+                    v.getDateArrivee(), v.getAvion().getCapaciteSoute(), v.getPrixDeVente(), TypeVol.Charter);
+            volsChartersCorrespondantsALaDemande.add(volAssociation);
+        }
+
+        for (VolAssociation v : volsChartersCorrespondantsALaDemande) {
+            System.out.println(v.toString());
+        }
+
+        /*VolAssociation volAssociation2 = new VolAssociation("test2", "Leopold san","Guinee",new java.util.Date(),
+         40, 40, TypeVol.Charter);
+        volsChartersCorrespondantsALaDemande.add(volAssociation2);*/
+
+        //ArrayList<VolAssociation> volAssociations = Main.getVols(TypeVol.Charter,
+        //demandeVols.getDate(), demandeVols.getPays(), demandeVols.getVolume());
+
         //volsChartersCorrespondantsALaDemande = new ArrayList<>();
         //VolAssociation vtest = volAssociations.get(0);
-        volsChartersCorrespondantsALaDemande.add(volAssociation);
+        //volsChartersCorrespondantsALaDemande.add(volAssociation);
 
         int tailleListeVols = volsChartersCorrespondantsALaDemande.size();
         logger.info("TAILLE LISTE VOLS : " + tailleListeVols);
@@ -127,7 +146,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 
         //Suite la premiere demande nous recuperons une liste de vols desires
         String volsChoisis = acceptProposal.getContent();
-        logger.info("Liste de vols acceptes (idVol, capacite) : \n" + volsChoisis.toString());
+        logger.info("Liste de vols acceptes (idVol, capacite) : \n" + volsChoisis);
 
         //Nous preparons une confirmation du traitement
         ACLMessage response = acceptProposal.createReply();
@@ -144,7 +163,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
             String idVol = volAccepte.getUuid();
             Integer capaciteAUtiliser = volAccepte.getCapacite();
             System.out.println(idVol + " " + capaciteAUtiliser);
-            //Main.updateCapaciteVol(idVol, capaciteAUtiliser);
+            //fr.m2.miage.flights.Main.updateCapaciteVol(idVol, capaciteAUtiliser);
         }
         //response.setContent(acceptedVols);
         return response;

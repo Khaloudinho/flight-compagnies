@@ -1,4 +1,4 @@
-package fr.m2.miage.pharma.behaviors;
+package fr.m2.miage.flights.behaviors;
 
 import jade.core.Agent;
 import jade.core.behaviours.OneShotBehaviour;

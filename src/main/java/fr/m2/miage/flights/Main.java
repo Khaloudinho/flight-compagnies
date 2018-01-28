@@ -1,17 +1,18 @@
+package fr.m2.miage.flights;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import fr.m2.miage.pharma.discuss.VolAssociation;
-import fr.m2.miage.pharma.models.*;
+import fr.m2.miage.flights.discuss.VolAssociation;
+import fr.m2.miage.flights.models.*;
 import org.hibernate.Session;
 
 import javax.persistence.Query;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static fr.m2.miage.pharma.services.HibernateSessionProvider.getSessionFactory;
+import static fr.m2.miage.flights.services.HibernateSessionProvider.getSessionFactory;
 
 public class Main {
     private static final Gson gson = new GsonBuilder().create();
@@ -41,14 +42,16 @@ public class Main {
         Session session = getSessionFactory().openSession();
 
         Query queryVolsReguliersCorrespondantsALaDemande = session.createNamedQuery(query, Object[].class);
-        queryVolsReguliersCorrespondantsALaDemande.setParameter("date", Date.valueOf(date));
+        queryVolsReguliersCorrespondantsALaDemande.setParameter("date", new java.util.Date(date));
         queryVolsReguliersCorrespondantsALaDemande.setParameter("pays", pays);
         queryVolsReguliersCorrespondantsALaDemande.setParameter("capaciteLibre", capaciteLibre);
         queryVolsReguliersCorrespondantsALaDemande.setParameter("typeVol", typeVol);
 
+        List<Object[]> vols = queryVolsReguliersCorrespondantsALaDemande.getResultList();
+
         session.close();
 
-        return queryVolsReguliersCorrespondantsALaDemande.getResultList();
+        return vols;
     }
 
     public static void showFlightsResults(List<Object[]> volsChartersCorrespondantsALaDemande) {
@@ -72,7 +75,7 @@ public class Main {
                             o[5].toString(),
                             o[0].toString(),
                             o[1].toString(),
-                            Date.valueOf(o[2].toString()),
+                            new java.util.Date(o[2].toString()),
                             Integer.parseInt(o[3].toString()),
                             Integer.parseInt(o[4].toString().substring(0, o[4].toString().indexOf("."))),
                             TypeVol.Charter
@@ -93,7 +96,7 @@ public class Main {
         //Map<String, Integer> tousLesPrix = new HashMap<>();
 
         for (Vol v : volsPourPrix) {
-            String idVol = v.getIdVol();
+            //String idVol = v.getIdVol();
             int consommationCarburant = v.getAvion().getConsommationCarburant();//Integer.valueOf(o[1].toString());
             int heuresVolDepuisParis = v.getAeroportArrivee().getHeuresVolDepuisParis();//Integer.valueOf(o[2].toString());
             int taxeAeroport = v.getAeroportArrivee().getTaxeAeroport();//Integer.valueOf(o[3].toString());
@@ -149,10 +152,21 @@ public class Main {
             session.save(avion);
         }
 
-        Date dateDepart = Date.valueOf("2017-01-01");
-        Date dateDepartVolsReguliers = Date.valueOf("2017-03-11");
-        Date dateArrivee = Date.valueOf("2017-05-16");
-        Date dateArriveeVolsReguliers = Date.valueOf("2017-06-17");
+        // java.util.Date dateDepart = new java.util.Date("2017-01-01");
+        // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date dateDepart = new java.util.Date();
+        java.util.Date dateDepartVolsReguliers = new java.util.Date();
+        java.util.Date dateArrivee = new java.util.Date();
+        java.util.Date dateArriveeVolsReguliers = new java.util.Date();
+/*
+        try {
+            dateDepart = formatter.parse("2017-01-01");
+            dateDepartVolsReguliers = formatter.parse("2017-03-11");
+            dateArrivee = formatter.parse("2017-05-16");
+            dateArriveeVolsReguliers = formatter.parse("2017-06-17");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }*/
 
         Set<Aeroport> aeroports = new HashSet<>();
         Aeroport a1 = new Aeroport();

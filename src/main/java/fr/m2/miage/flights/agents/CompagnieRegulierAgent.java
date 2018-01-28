@@ -1,4 +1,4 @@
-package fr.m2.miage.pharma.agents;
+package fr.m2.miage.flights.agents;
 /*
 import behaviors.RegisterAgentBehavior;
 import containers.CompagnieContainer;

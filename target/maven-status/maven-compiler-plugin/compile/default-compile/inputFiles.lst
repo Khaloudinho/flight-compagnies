@@ -7,7 +7,6 @@ C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2
 C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2\miage\pharma\services\HibernateSessionProvider.java
 C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2\miage\pharma\models\Abonnement.java
 C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2\miage\pharma\models\Abonne.java
-C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\Main.java
 C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2\miage\pharma\agents\LaboAgentAvailable.java
 C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2\miage\pharma\models\Aeroport.java
 C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2\miage\pharma\behaviors\VolManagementBehaviorCyclic.java
@@ -24,5 +23,6 @@ C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2
 C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2\miage\pharma\behaviors\RegisterService.java
 C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2\miage\pharma\agents\LaboAgentProduction.java
 C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2\miage\pharma\behaviors\ResponderBehaviourProduction.java
+C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2\miage\pharma\Main.java
 C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2\miage\pharma\models\TypeVol.java
 C:\Users\Khaled Bouguettoucha\IdeaProjects\flight-compagnies\src\main\java\fr\m2\miage\pharma\agents\LaboAgentBoiron.java
