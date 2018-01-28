@@ -6,7 +6,7 @@ import jade.core.Agent;
 
 import static fr.m2.miage.flights.services.HibernateSessionProvider.getSessionFactory;
 
-public class CompagnieCharterAgent extends Agent implements Compagnie {
+public class CompagnieCharterAgent extends Agent{
 
     public static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(CompagnieCharterAgent.class);
 

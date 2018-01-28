@@ -18,14 +18,9 @@
             org.hibernate.cache.internal.NoCachingRegionFactory
         </property>
 
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create-drop</property>
 
-        <mapping class="fr.m2.miage.flights.models.Abonne"/>
-        <mapping class="fr.m2.miage.flights.models.Abonnement"/>
-        <mapping class="fr.m2.miage.flights.models.Aeroport"/>
-        <mapping class="fr.m2.miage.flights.models.Avion"/>
-        <mapping class="fr.m2.miage.flights.models.Lieu"/>
-        <mapping class="fr.m2.miage.flights.models.Reservation"/>
+        <mapping class="fr.m2.miage.flights.models.Contrat"/>
         <mapping class="fr.m2.miage.flights.models.Vol"/>
     </session-factory>
 </hibernate-configuration>

@@ -7,17 +7,11 @@ import java.io.Serializable;
 public class VolAssociation implements Serializable {
 
     private String idVol;
-
     private String aeroport;
-
     private String pays;
-
     private java.util.Date dateArrivee;
-
     private double volume;
-
     private double prix;
-
     private TypeVol typeVol;
 
     public VolAssociation() {
@@ -87,6 +81,14 @@ public class VolAssociation implements Serializable {
 
     public void setTypeVol(TypeVol typeVol) {
         this.typeVol = typeVol;
+    }
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
     }
 
     @Override

@@ -1,154 +1,59 @@
 package fr.m2.miage.flights.services;
 
+import static fr.m2.miage.flights.services.HibernateSessionProvider.getSessionFactory;
+
+import fr.m2.miage.flights.models.Vol;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 public class DatabaseService {
 
     private static final Logger logger = LoggerFactory.getLogger(DatabaseService.class);
 
-  /*public static int getAvailableUnits(String maladieName, Date peremption, String agentName) {
-    Session session = getSessionFactory().openSession();
-    Integer availableUnits;
+    public static String getRandomPays() {
+        List<String> pays = new ArrayList<>();
+        pays.add("Guinee");
+        pays.add("Tunisie");
+        pays.add("Gambie");
+        pays.add("Cameroun");
+        pays.add("Senegal");
 
-    try {
-      Long getResult = session
-          .createNamedQuery("getStock", Long.class)
-          .setParameter("maladieName", maladieName)
-          .setParameter("datePeremption", peremption)
-          .setParameter("agentName", agentName.split("-")[0])
-          .getSingleResult();
-
-      availableUnits = (getResult == null) ? 0 : Math.toIntExact(getResult);
-      //int overflow is possible so we catch
-    } catch (ArithmeticException e) {
-      availableUnits = Integer.MAX_VALUE;
-    }
-    session.close();
-
-    return availableUnits;
-  }
-
-  public static Date getMinDatePremption(String maladieName, Date peremption, String agentName) {
-    Session session = getSessionFactory().openSession();
-    Date minPeremption = (Date) session
-        .getNamedQuery("getMinPeremptionForMaladie")
-        .setParameter("maladieName", maladieName)
-        .setParameter("datePeremption", peremption)
-        .setParameter("agentName", agentName.split("-")[0])
-        .getSingleResult();
-    session.close();
-    return minPeremption;
-  }
-
-  public static void saveVente(
-      String agentName,
-      String client,
-      Date dateLivraison,
-      Date dateVente,
-      int nbUnite,
-      double prixUnitaire,
-      Maladie maladie) {
-    Vente vente = new Vente();
-    vente.setAgent(agentName);
-    vente.setClient(client);
-    vente.setDateLivraison(dateLivraison);
-    vente.setDateVente(dateVente);
-    vente.setNbUnite(nbUnite);
-    vente.setPrixUnitaire(prixUnitaire);
-    vente.setMaladie(maladie);
-
-    Session session = getSessionFactory().openSession();
-    session.beginTransaction();
-    session.save(vente);
-    session.getTransaction().commit();
-    session.close();
-  }
-
-  public static Maladie getMaladieByName(String name) {
-    Session session = getSessionFactory().openSession();
-    Maladie maladie = (Maladie) session
-        .getNamedQuery("getMaladieByName")
-        .setParameter("maladieName", name)
-        .getResultList()
-        .get(0);
-    session.close();
-    return maladie;
-  }
-
-  public static List<Lot> getAllNotEmptyLotFromMaladie(String maladieName, String agentName) {
-    Session session = getSessionFactory().openSession();
-    List<Lot> listeLot = session
-        .createNamedQuery("getAllNotEmptyLotFromMaladie", Lot.class)
-        .setParameter("maladieName", maladieName)
-        .setParameter("agentName", agentName.split("-")[0])
-        .getResultList();
-    session.close();
-    return listeLot;
-  }
-
-  public static void saveCollectionInDB(Collection collection) {
-    Session session = getSessionFactory().openSession();
-    session.beginTransaction();
-
-    for (Object o : collection) {
-      session.save(o);
+        Random random = new Random();
+        return pays.get(random.nextInt(pays.size()));
     }
 
-    session.getTransaction().commit();
-    session.close();
-  }
+    public static void createRandomVols() {
+        System.out.println("test");
+        Session session = getSessionFactory().openSession();
 
+        String pays = getRandomPays();
+        java.util.Date dateArrivee = new Date();
+        Random random = new Random();
+        // Volume au hasard entre 100 et 200
+        double volume = 100 + 100 * random.nextDouble();
+        // prix entre 50 et 100
+        double prix = 50 + 50 * random.nextDouble();
 
-  public static void addStockToRandomMaladie(int minStockTrigger, String agentName) {
-    Session session = getSessionFactory().openSession();
-
-    List<Maladie> maladies = session
-        .createNamedQuery("getAllMaladie", Maladie.class)
-        .getResultList();
-
-    Random randomizer = new Random();
-    Maladie maladie = maladies.get(randomizer.nextInt(maladies.size()));
-
-    Long getResult = session
-        .createNamedQuery("getStockNoDate", Long.class)
-        .setParameter("maladieName", maladie.getNom())
-        .setParameter("agentName", agentName.split("-")[0])
-        .getSingleResult();
-
-    Integer stock = (getResult == null) ? 0 : Math.toIntExact(getResult);
-
-    if (stock <= minStockTrigger) {
-      // On met au hasard le nombre de vaccin à créer
-      int stockToSet = randomizer.nextInt(50) + 50;
-
-      Date fabrication = new Date(
-          Instant.now().toEpochMilli() + maladie.getProductionTime() * stockToSet);
-      Date permeption = new Date(fabrication.getTime() + maladie.getDelaiPeremption());
-
-      session.beginTransaction();
-      Lot futureLot = new Lot();
-      futureLot.setAgentName(agentName.split("-")[0]);
-      futureLot.setStockActuel(stockToSet);
-      futureLot.setStockInitial(stockToSet);
-      futureLot.setMaladie(maladie);
-      futureLot.setDatePeremption(permeption);
-      futureLot.setDateFabrication(fabrication);
-      session.save(futureLot);
-      session.getTransaction().commit();
-      logger.info(agentName + " : Création de " +
-          stockToSet + " vaccins pour " +
-          maladie.getNom());
+        Vol vol = new Vol(pays, dateArrivee, volume, prix);
+        session.beginTransaction();
+        session.save(vol);
+        session.getTransaction().commit();
+        session.close();
     }
-    session.close();
-  }
 
-
-  public static void saveObjectInDB(Object o) {
-    Session session = getSessionFactory().openSession();
-    session.beginTransaction();
-    session.save(o);
-    session.getTransaction().commit();
-    session.close();
-  }*/
+    public static List<Vol> getVolMatching(String pays, Double volume) {
+        Session session = getSessionFactory().openSession();
+        List<Vol> vols = session
+                .createNamedQuery("getVolByPaysAndVolumeInf")
+                .setParameter("pays", pays)
+                .setParameter("volume", volume)
+                .getResultList();
+        return vols;
+    }
 }

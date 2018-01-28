@@ -1,19 +1,22 @@
 package fr.m2.miage.flights.behaviors;
 
+import static fr.m2.miage.flights.services.DatabaseService.getVolMatching;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import fr.m2.miage.flights.discuss.DemandeVols;
 import fr.m2.miage.flights.discuss.VolAssociation;
 import fr.m2.miage.flights.discuss.VolAssociationFinal;
+import fr.m2.miage.flights.models.Vol;
 import fr.m2.miage.flights.util.TypeVol;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.FIPANames;
 import jade.lang.acl.ACLMessage;
 
-import java.lang.reflect.Type;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 
@@ -106,6 +109,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
      */
     //{"pays":"Guinee","date":"May 16, 2017 09:10:10 AM","volume":"10"}
     private ACLMessage manageCFP(ACLMessage cfp) {
+
         //On recupere la demande
         String message = cfp.getContent();
         logger.info("Demande de vol : \n" + message);
@@ -114,17 +118,23 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         ACLMessage response = cfp.createReply();
         response.setProtocol(FIPANames.InteractionProtocol.FIPA_CONTRACT_NET);
 
-        //On mappe de notre cote la demande
+        //On mappe de notre coté la demande
         demandeVols = gson.fromJson(message, DemandeVols.class);
 
+        List<Vol> volsMatching= getVolMatching(demandeVols.getPays(), demandeVols.getVolume());
         //On recupere la liste des vols pertinents
 
-        int tailleListeVols = volsChartersCorrespondantsALaDemande.size();
+        int tailleListeVols = volsMatching.size();
         logger.info("TAILLE LISTE VOLS : " + tailleListeVols);
 
         //On transforme cette de liste de resultats en JSON
-        filterVols(demandeVols, volsChartersCorrespondantsALaDemande);
-        String messageAssociationContent = gson.toJson(volsChartersCorrespondantsALaDemande);
+//        List<VolAssociation> vols = filterVols(demandeVols, volsChartersCorrespondantsALaDemande);
+//        for (VolAssociation volAssociation : vols) {
+//            volAssociation.setVolume(demandeVols.getVolume());
+//        }
+
+
+        String messageAssociationContent = gson.toJson(volsMatching);
 
         response.setPerformative(ACLMessage.PROPOSE);
         response.setContent(messageAssociationContent);
@@ -147,45 +157,37 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 
         VolAssociationFinal volAccepte = gson.fromJson(volsChoisis, VolAssociationFinal.class);
 
-        System.out.println("ACCEPTATIONS : "+volAccepte.toString());
+        System.out.println("ACCEPTATIONS : " + volAccepte.toString());
 
         //On met a jour l'etat de la base de donnees
-            for (VolAssociation volAssociation : volsChartersCorrespondantsALaDemande) {
-                if (volAssociation.getIdVol().equals(volAccepte.getIdVol())) {
-                    double difference = volAssociation.getCapaciteLibre() - demandeVols.getVolume();
-                    if (difference < 0) {
-                        response.setPerformative(ACLMessage.REFUSE);
-                        return response;
-                    } else {
-                        volAssociation.setCapaciteLibre(volAssociation.getCapaciteLibre() -
-                                demandeVols.getVolume());
-                    }
+        for (VolAssociation volAssociation : volsChartersCorrespondantsALaDemande) {
+            if (volAssociation.getIdVol().equals(volAccepte.getIdVol())) {
+                double difference = volAssociation.getCapaciteLibre() - demandeVols.getVolume();
+                if (difference < 0) {
+                    response.setPerformative(ACLMessage.REFUSE);
+                    return response;
+                } else {
+                    volAssociation.setCapaciteLibre(volAssociation.getCapaciteLibre() -
+                            demandeVols.getVolume());
                 }
+            }
         }
         System.out.println(response.getContent());
         response.setContent(gson.toJson(volAccepte));
         return response;
     }
 
-    private void filterByDate(DemandeVols demandeVols, List<VolAssociation> volsProposes) {
-        Date dateDemande = demandeVols.getDate();
-        volsProposes.stream().filter(vol -> (isSameDay(dateDemande, vol.getDateArrivee())));
-    }
+    private List<VolAssociation> filterVols(DemandeVols demandeVols, List<VolAssociation> volsProposes) {
+        List<VolAssociation> vols = new ArrayList<>();
 
-    private void filterByCapacite(DemandeVols demandeVols, List<VolAssociation> volsProposes) {
-        volsProposes.stream().filter(vol -> (demandeVols.getVolume() <= vol.getCapaciteLibre()));
-    }
-
-    private void filterByCountry(DemandeVols demandeVols, List<VolAssociation> volsProposes) {
-
-        volsProposes.stream().filter(vol -> (demandeVols.getPays().equals(vol.getPays())));
-
-    }
-
-    private void filterVols(DemandeVols demandeVols, List<VolAssociation> volsProposes) {
-        filterByCountry(demandeVols, volsProposes);
-        filterByDate(demandeVols, volsProposes);
-        filterByCapacite(demandeVols, volsProposes);
+        for (VolAssociation vol : volsProposes) {
+            if (demandeVols.getPays().equals(vol.getPays())
+                    && demandeVols.getVolume() <= vol.getCapaciteLibre()
+                    && isSameDay(demandeVols.getDate(), vol.getDateArrivee())) {
+                vols.add(vol);
+            }
+        }
+        return vols;
     }
 
     public boolean isSameDay(Date d1, Date d2) {
