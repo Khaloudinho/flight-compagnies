@@ -6,6 +6,7 @@
 /Users/bertran95u/agents/src/main/java/fr/m2/miage/flights/util/TypeVol.java
 /Users/bertran95u/agents/src/main/java/fr/m2/miage/flights/models/Aeroport.java
 /Users/bertran95u/agents/src/main/java/fr/m2/miage/flights/behaviors/VolManagementBehaviorCyclic.java
+/Users/bertran95u/agents/src/main/java/fr/m2/miage/flights/discuss/VolAssociationFinal.java
 /Users/bertran95u/agents/src/main/java/fr/m2/miage/flights/util/EtatReservation.java
 /Users/bertran95u/agents/src/main/java/fr/m2/miage/flights/models/Abonnement.java
 /Users/bertran95u/agents/src/main/java/fr/m2/miage/flights/services/EnregistrementService.java

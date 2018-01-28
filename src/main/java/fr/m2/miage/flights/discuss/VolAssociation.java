@@ -14,7 +14,7 @@ public class VolAssociation implements Serializable {
 
     private java.util.Date dateArrivee;
 
-    private double capaciteLibre;
+    private double volume;
 
     private double prix;
 
@@ -23,12 +23,12 @@ public class VolAssociation implements Serializable {
     public VolAssociation() {
     }
 
-    public VolAssociation(String idVol, String aeroport, String pays, java.util.Date dateArrivee, double capaciteLibre, double prix, TypeVol typeVol) {
+    public VolAssociation(String idVol, String aeroport, String pays, java.util.Date dateArrivee, double volume, double prix, TypeVol typeVol) {
         this.idVol = idVol;
         this.aeroport = aeroport;
         this.pays = pays;
         this.dateArrivee = dateArrivee;
-        this.capaciteLibre = capaciteLibre;
+        this.volume = volume;
         this.prix = prix;
         this.typeVol = typeVol;
     }
@@ -66,11 +66,11 @@ public class VolAssociation implements Serializable {
     }
 
     public double getCapaciteLibre() {
-        return capaciteLibre;
+        return volume;
     }
 
-    public void setCapaciteLibre(double capaciteLibre) {
-        this.capaciteLibre = capaciteLibre;
+    public void setCapaciteLibre(double volume) {
+        this.volume = volume;
     }
 
     public double getPrix() {
@@ -96,7 +96,7 @@ public class VolAssociation implements Serializable {
                 ", aeroport='" + aeroport + '\'' +
                 ", pays='" + pays + '\'' +
                 ", dateArrivee='" + dateArrivee + '\'' +
-                ", capaciteLibre=" + capaciteLibre +
+                ", volume=" + volume +
                 ", prix=" + prix +
                 ", typeVol=" + typeVol +
                 '}';

@@ -10,7 +10,6 @@ public class EnregistrementService {
 
     public static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(EnregistrementService.class);
 
-
     public static boolean enregistrer(Agent agent, String serviceName, String serviceType) {
         boolean registerState = false;
 
