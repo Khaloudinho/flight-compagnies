@@ -121,7 +121,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         //On mappe de notre coté la demande
         demandeVols = gson.fromJson(message, DemandeVols.class);
 
-        List<Vol> volsMatching= getVolMatching(demandeVols.getPays(), demandeVols.getVolume());
+        List<Vol> volsMatching = getVolMatching(demandeVols.getPays(), demandeVols.getVolume(), demandeVols.getDate());
         //On recupere la liste des vols pertinents
 
         int tailleListeVols = volsMatching.size();
@@ -133,11 +133,14 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 //            volAssociation.setVolume(demandeVols.getVolume());
 //        }
 
-
         String messageAssociationContent = gson.toJson(volsMatching);
 
-        response.setPerformative(ACLMessage.PROPOSE);
-        response.setContent(messageAssociationContent);
+        if (tailleListeVols > 0) {
+            response.setPerformative(ACLMessage.PROPOSE);
+            response.setContent(messageAssociationContent);
+        } else {
+            response.setPerformative(ACLMessage.REFUSE);
+        }
 
         logger.info(messageAssociationContent);
         logger.info("Liste de vols envoyée aux associations");
@@ -150,7 +153,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
     //!\prevoir cas capacite trop grosse ?
     private ACLMessage manageACCEPT_PROPOSAL(ACLMessage acceptProposal) {
         String volsChoisis = acceptProposal.getContent();
-        logger.info("Liste de vols acceptes par ANNE : \n" + volsChoisis);
+        logger.info("Liste de vols acceptes : \n" + volsChoisis);
 
         ACLMessage response = acceptProposal.createReply();
         response.setPerformative(ACLMessage.INFORM);
@@ -159,7 +162,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 
         System.out.println("ACCEPTATIONS : " + volAccepte.toString());
 
-        //On met a jour l'etat de la base de donnees
+        // On met a jour l'etat de la base de donnees
         for (VolAssociation volAssociation : volsChartersCorrespondantsALaDemande) {
             if (volAssociation.getIdVol().equals(volAccepte.getIdVol())) {
                 double difference = volAssociation.getCapaciteLibre() - demandeVols.getVolume();

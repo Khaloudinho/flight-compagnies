@@ -9,7 +9,16 @@ import java.sql.Date;
 @NamedQueries({
         @NamedQuery(
                 name = "getVolByPaysAndVolumeInf",
-                query = "select v from Vol v where v.pays = :pays and v.volume > :volume"
+                query = "select v from Vol v " +
+                        "where v.pays = :pays " +
+                        "and v.volume > :volume " +
+                        "and v.dateArrivee between :dateSup " +
+                        "and :dateInf "
+        ),
+        @NamedQuery(
+                name = "getVols",
+                query = "select v from Vol v " +
+                        "where v.pays = :pays "
         )
 })
 
