@@ -1,6 +1,6 @@
 package fr.m2.miage.flights.discuss;
 
-import fr.m2.miage.flights.models.TypeVol;
+import fr.m2.miage.flights.util.TypeVol;
 
 import java.io.Serializable;
 

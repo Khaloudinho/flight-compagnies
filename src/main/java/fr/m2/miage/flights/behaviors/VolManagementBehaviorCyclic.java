@@ -6,18 +6,14 @@ import com.google.gson.reflect.TypeToken;
 import fr.m2.miage.flights.discuss.DemandeVols;
 import fr.m2.miage.flights.discuss.VolAccepte;
 import fr.m2.miage.flights.discuss.VolAssociation;
-import fr.m2.miage.flights.models.TypeVol;
-import fr.m2.miage.flights.models.Vol;
+import fr.m2.miage.flights.util.TypeVol;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.FIPANames;
 import jade.lang.acl.ACLMessage;
-import org.hibernate.Session;
 
 import java.lang.reflect.Type;
 import java.util.*;
-
-import static fr.m2.miage.flights.services.HibernateSessionProvider.getSessionFactory;
 
 //PROVISOIRE POUR TESTER L'INTERACTION
 //String message = "{\"pays\":\"Guinee\",\"date\":\"2017-01-01\",\"volume\":\"10\"}";
@@ -212,15 +208,15 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 
     private void filterByDate(DemandeVols demandeVols, List<VolAssociation> volsProposes){
         Date dateDemande= demandeVols.getDate();
-        volsProposes.stream().filter(vol -> isSameDay(dateDemande, vol.getDateArrivee()));
+        volsProposes.stream().filter(vol -> !(isSameDay(dateDemande, vol.getDateArrivee())));
     }
 
     private void filterByCapacite(DemandeVols demandeVols, List<VolAssociation> volsProposes){
-        volsProposes.stream().filter(vol -> demandeVols.getVolume() <= vol.getCapaciteLibre());
+        volsProposes.stream().filter(vol -> !(demandeVols.getVolume() <= vol.getCapaciteLibre()));
     }
 
     private void filterByCountry(DemandeVols demandeVols, List<VolAssociation> volsProposes){
-        volsProposes.stream().filter(vol -> demandeVols.getPays().equals(vol.getPays()));
+        volsProposes.stream().filter(vol -> !(demandeVols.getPays().equals(vol.getPays())));
     }
 
     private void filterVols(DemandeVols demandeVols, List<VolAssociation> volsProposes){

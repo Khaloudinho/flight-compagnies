@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import fr.m2.miage.flights.discuss.VolAssociation;
 import fr.m2.miage.flights.models.*;
+import fr.m2.miage.flights.util.TypeVol;
 import org.hibernate.Session;
 
 import javax.persistence.Query;
