@@ -2,17 +2,18 @@ package fr.m2.miage.flights.discuss;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import java.util.Date;
 
 public class DemandeVols implements Serializable {
 
     private String pays;
-    private String date;
+    private Date date;
     private Integer volume;
 
     public DemandeVols() {
     }
 
-    public DemandeVols(String pays, String date, Integer volume) throws ParseException {
+    public DemandeVols(String pays, Date date, Integer volume) throws ParseException {
         this.pays = pays;
         this.date = date;
         this.volume = volume;
@@ -26,11 +27,11 @@ public class DemandeVols implements Serializable {
         this.pays = pays;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

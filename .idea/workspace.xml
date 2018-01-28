@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8cdecb0d-494c-4903-b170-4cc36e64be6e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/m2/miage/flights/behaviors/VolManagementBehaviorCyclic.java" afterPath="$PROJECT_DIR$/src/main/java/fr/m2/miage/flights/behaviors/VolManagementBehaviorCyclic.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/m2/miage/flights/discuss/DemandeVols.java" afterPath="$PROJECT_DIR$/src/main/java/fr/m2/miage/flights/discuss/DemandeVols.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,11 +73,11 @@
       <file leaf-file-name="VolManagementBehaviorCyclic.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/m2/miage/flights/behaviors/VolManagementBehaviorCyclic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="209" column="6" lean-forward="false" selection-start-line="209" selection-start-column="6" selection-end-line="209" selection-end-column="6" />
+            <state relative-caret-position="169">
+              <caret line="222" column="87" lean-forward="false" selection-start-line="222" selection-start-column="87" selection-end-line="222" selection-end-column="87" />
               <folding>
-                <element signature="e#1204#1205#0" expanded="true" />
-                <element signature="e#1232#1233#0" expanded="true" />
+                <element signature="e#1144#1145#0" expanded="true" />
+                <element signature="e#1172#1173#0" expanded="true" />
                 <element signature="method#manageACCEPT_PROPOSAL#0;class#VolManagementBehaviorCyclic#0" expanded="false" />
               </folding>
             </state>
@@ -88,8 +87,8 @@
       <file leaf-file-name="VolAssociation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/m2/miage/flights/discuss/VolAssociation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="29" />
+            <state relative-caret-position="309">
+              <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -151,6 +150,7 @@
         <option value="$PROJECT_DIR$/src/main/java/fr/m2/miage/pharma/behaviors/VolManagementBehaviorCyclic.java" />
         <option value="$PROJECT_DIR$/src/main/resources/jade-container.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/m2/miage/flights/discuss/DemandeVols.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/m2/miage/flights/behaviors/VolManagementBehaviorCyclic.java" />
       </list>
     </option>
@@ -429,7 +429,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25647000" />
+    <option name="totallyTimeSpent" value="26636000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -543,7 +543,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/m2/miage/pharma/models/Maladie.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/m2/miage/pharma/models/Vente.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/m2/miage/pharma/models/Lieu.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/m2/miage/pharma/models/Abonnement.java" />
@@ -678,21 +677,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/m2/miage/flights/discuss/DemandeVols.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+          <folding>
+            <element signature="e#646#647#0" expanded="true" />
+            <element signature="e#684#685#0" expanded="true" />
+            <element signature="e#716#717#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/m2/miage/flights/discuss/VolAssociation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="29" />
+        <state relative-caret-position="309">
+          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/m2/miage/flights/behaviors/VolManagementBehaviorCyclic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="209" column="6" lean-forward="false" selection-start-line="209" selection-start-column="6" selection-end-line="209" selection-end-column="6" />
+        <state relative-caret-position="169">
+          <caret line="222" column="87" lean-forward="false" selection-start-line="222" selection-start-column="87" selection-end-line="222" selection-end-column="87" />
           <folding>
-            <element signature="e#1204#1205#0" expanded="true" />
-            <element signature="e#1232#1233#0" expanded="true" />
+            <element signature="e#1144#1145#0" expanded="true" />
+            <element signature="e#1172#1173#0" expanded="true" />
             <element signature="method#manageACCEPT_PROPOSAL#0;class#VolManagementBehaviorCyclic#0" expanded="false" />
           </folding>
         </state>

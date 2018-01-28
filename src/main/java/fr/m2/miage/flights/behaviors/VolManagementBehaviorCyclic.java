@@ -15,9 +15,7 @@ import jade.lang.acl.ACLMessage;
 import org.hibernate.Session;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import static fr.m2.miage.flights.services.HibernateSessionProvider.getSessionFactory;
 
@@ -138,22 +136,27 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         switch (demandeVols.getPays()){
             case "Guinee":
                 volsChartersCorrespondantsALaDemande = volsChartersCorrespondantsALaDemandeGuinee;
+                filterVols(demandeVols, volsChartersCorrespondantsALaDemande);
                 break;
 
             case "Tunisie":
                 volsChartersCorrespondantsALaDemande = volsChartersCorrespondantsALaDemandeTunisie;
+                filterVols(demandeVols, volsChartersCorrespondantsALaDemande);
                 break;
 
             case "Gambie":
                 volsChartersCorrespondantsALaDemande = volsChartersCorrespondantsALaDemandeGambie;
+                filterVols(demandeVols, volsChartersCorrespondantsALaDemande);
                 break;
 
             case "Cameroun":
                 volsChartersCorrespondantsALaDemande =  volsChartersCorrespondantsALaDemandeCameroun;
+                filterVols(demandeVols, volsChartersCorrespondantsALaDemande);
                 break;
 
             case "Senegal":
                 volsChartersCorrespondantsALaDemande = volsChartersCorrespondantsALaDemandeSenegal;
+                filterVols(demandeVols, volsChartersCorrespondantsALaDemande);
                 break;
         }
 
@@ -207,9 +210,35 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         return response;
     }
 
-    /*private void filterByDate(DemandeVols demandeVols, ArrayList<VolAssociation> volsProposes){
-        Date = demandeVols.getDate();
-    }*/
+    private void filterByDate(DemandeVols demandeVols, List<VolAssociation> volsProposes){
+        Date dateDemande= demandeVols.getDate();
+        volsProposes.stream().filter(vol -> isSameDay(dateDemande, vol.getDateArrivee()));
+    }
+
+    private void filterByCapacite(DemandeVols demandeVols, List<VolAssociation> volsProposes){
+        volsProposes.stream().filter(vol -> demandeVols.getVolume() <= vol.getCapaciteLibre());
+    }
+
+    private void filterByCountry(DemandeVols demandeVols, List<VolAssociation> volsProposes){
+        volsProposes.stream().filter(vol -> demandeVols.getPays().equals(vol.getPays()));
+    }
+
+    private void filterVols(DemandeVols demandeVols, List<VolAssociation> volsProposes){
+        filterByDate(demandeVols, volsProposes);
+        filterByCapacite(demandeVols, volsProposes);
+    }
+
+    public boolean isSameDay(Date d1, Date d2) {
+        Calendar date1 = Calendar.getInstance();
+        date1.setTime(d1);
+
+        Calendar date2 = Calendar.getInstance();
+        date2.setTime(d2);
+
+        return date1.get(Calendar.DAY_OF_MONTH) == date2.get(Calendar.DAY_OF_MONTH) &&
+                date1.get(Calendar.MONTH) == date2.get(Calendar.MONTH) &&
+                date1.get(Calendar.YEAR) == date2.get(Calendar.YEAR);
+    }
 }
 
 
