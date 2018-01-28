@@ -84,7 +84,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 
         //On recupere la liste des vols pertinents
         List<VolAssociation> volsChartersCorrespondantsALaDemande = new ArrayList<>();
-        Session session = getSessionFactory().openSession();
+        /*Session session = getSessionFactory().openSession();
         List<Vol> volsEnBase = session
                 .createNamedQuery("Vol.calculerLesPrixDesVols", Vol.class)
                 .getResultList();
@@ -98,11 +98,11 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 
         for (VolAssociation v : volsChartersCorrespondantsALaDemande) {
             System.out.println(v.toString());
-        }
+        }*/
 
-        /*VolAssociation volAssociation2 = new VolAssociation("test2", "Leopold san","Guinee",new java.util.Date(),
+        VolAssociation volAssociation2 = new VolAssociation("test2", "Leopold san","Guinee",new java.util.Date(),
          40, 40, TypeVol.Charter);
-        volsChartersCorrespondantsALaDemande.add(volAssociation2);*/
+        volsChartersCorrespondantsALaDemande.add(volAssociation2);
 
         //ArrayList<VolAssociation> volAssociations = Main.getVols(TypeVol.Charter,
         //demandeVols.getDate(), demandeVols.getPays(), demandeVols.getVolume());
@@ -117,20 +117,24 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         //On transforme cette de liste de resultats en JSON
         String messageAssociationContent = gson.toJson(volsChartersCorrespondantsALaDemande);
 
+        response.setPerformative(ACLMessage.PROPOSE);
+        response.setContent(messageAssociationContent);
+        logger.info("Liste de vols envoyée aux associations");
+
         //Si la liste contient au moins 1 vol
         //On va envoyer cette liste avec le type PROPOSE
-        if (tailleListeVols > 0) {
+        /*if (tailleListeVols > 0) {
             response.setPerformative(ACLMessage.PROPOSE);
             response.setContent(messageAssociationContent);
             logger.info("Liste de vols envoyée aux associations");
             //Si nous n'avons aucun vols par rapport a la demande effectue
             //Nous envoyons un REFUSE
-        } else {
+        /*} else {
             response.setPerformative(ACLMessage.REFUSE);
             logger.info("Pas de vols pour la date demandee");
         }
         //Si jamais le mapper venait a planter on aurait une erreur de format de donnees
-        logger.info("CONTENU RESPONSE : " + response.toString());
+        logger.info("CONTENU RESPONSE : " + response.toString());*/
         return response;
     }
 
