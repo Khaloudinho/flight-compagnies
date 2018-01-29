@@ -3,8 +3,6 @@ package fr.m2.miage.flights.behaviors;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import fr.m2.miage.flights.discuss.DemandeVols;
-import fr.m2.miage.flights.discuss.VolAssociation;
-import fr.m2.miage.flights.discuss.VolAssociationFinal;
 import fr.m2.miage.flights.models.Vol;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
@@ -16,7 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static fr.m2.miage.flights.services.DatabaseService.getVolsMatching;
+import static fr.m2.miage.flights.services.DatabaseService.getFlightsMatchingDemand;
 
 public class VolManagementBehaviorCyclic extends CyclicBehaviour {
 
@@ -72,7 +70,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         DemandeVols demandeVols = gson.fromJson(message, DemandeVols.class);
 
         // On récupère la liste des vols pertinents
-        List<Vol> volsMatching = getVolsMatching(demandeVols.getPays(), demandeVols.getVolume(), demandeVols.getDate());
+        List<Vol> volsMatching = getFlightsMatchingDemand(demandeVols.getPays(), demandeVols.getVolume(), demandeVols.getDate());
 
         logger.info("La liste contient : " + volsMatching.size() + " vols !");
 
@@ -97,7 +95,7 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         ACLMessage response = acceptProposal.createReply();
         response.setPerformative(ACLMessage.INFORM);
 
-        VolAssociationFinal volAccepte = gson.fromJson(volsChoisis, VolAssociationFinal.class);
+        Vol volAccepte = gson.fromJson(volsChoisis, Vol.class);
 
         System.out.println("Vols acceptés : " + volAccepte.toString());
 
@@ -105,31 +103,6 @@ public class VolManagementBehaviorCyclic extends CyclicBehaviour {
         response.setContent(gson.toJson(volAccepte));
 
         return response;
-    }
-
-    private List<VolAssociation> filterVols(DemandeVols demandeVols, List<VolAssociation> volsProposes) {
-        List<VolAssociation> vols = new ArrayList<>();
-
-        for (VolAssociation vol : volsProposes) {
-            if (demandeVols.getPays().equals(vol.getPays())
-                    && demandeVols.getVolume() <= vol.getCapaciteLibre()
-                    && isSameDay(demandeVols.getDate(), vol.getDateArrivee())) {
-                vols.add(vol);
-            }
-        }
-        return vols;
-    }
-
-    public boolean isSameDay(Date d1, Date d2) {
-        Calendar date1 = Calendar.getInstance();
-        date1.setTime(d1);
-
-        Calendar date2 = Calendar.getInstance();
-        date2.setTime(d2);
-
-        return date1.get(Calendar.DAY_OF_MONTH) == date2.get(Calendar.DAY_OF_MONTH) &&
-                date1.get(Calendar.MONTH) == date2.get(Calendar.MONTH) &&
-                date1.get(Calendar.YEAR) == date2.get(Calendar.YEAR);
     }
 }
 

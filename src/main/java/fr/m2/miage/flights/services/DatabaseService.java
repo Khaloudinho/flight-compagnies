@@ -53,7 +53,7 @@ public class DatabaseService {
         Session session = getSessionFactory().openSession();
 
         List<Vol> vols = session
-                .createNamedQuery("getVols")
+                .createNamedQuery("getFlights")
                 .setParameter("pays", "Guinee")
                 .getResultList();
 
@@ -67,7 +67,7 @@ public class DatabaseService {
         session.close();
     }
 
-    public static List<Vol> getVolsMatching(String pays, Double volume, java.util.Date date) {
+    public static List<Vol> getFlightsMatchingDemand(String pays, Double volume, java.util.Date date) {
         Session session = getSessionFactory().openSession();
 
         Calendar cal = Calendar.getInstance();
@@ -81,11 +81,11 @@ public class DatabaseService {
         Date dateSup = cal2.getTime();
 
         List<Vol> vols = session
-                .createNamedQuery("getVolsMatchingDemand")
+                .createNamedQuery("getFlightsMatchingDemand")
                 .setParameter("pays", pays)
                 .setParameter("volume", volume)
-                /*.setParameter("dateInf", dateInf)
-                .setParameter("dateSup", dateSup)*/
+                .setParameter("dateInf", dateInf)
+                .setParameter("dateSup", dateSup)
                 .getResultList();
         return vols;
     }
