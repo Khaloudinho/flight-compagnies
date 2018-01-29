@@ -84,8 +84,8 @@ public class DatabaseService {
                 .createNamedQuery("getVolsMatchingDemand")
                 .setParameter("pays", pays)
                 .setParameter("volume", volume)
-                .setParameter("dateInf", dateInf)
-                .setParameter("dateSup", dateSup)
+                /*.setParameter("dateInf", dateInf)
+                .setParameter("dateSup", dateSup)*/
                 .getResultList();
         return vols;
     }

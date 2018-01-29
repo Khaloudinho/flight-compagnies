@@ -31,9 +31,9 @@ public class RegisterService extends OneShotBehaviour {
         dfd.addServices(sd);
         try {
             DFService.register(super.myAgent, dfd);
-            logger.info("Agent: " + name + " of type: " + type + " registered");
+            logger.info("Agent: " + name + " de type: " + type + " inscrit !");
         } catch (FIPAException e) {
-            logger.error(super.myAgent.getLocalName() + " error during service register", e);
+            logger.error(super.myAgent.getLocalName() + " erreur durant l'inscription de l'agent", e);
             super.myAgent.doDelete();
         }
     }

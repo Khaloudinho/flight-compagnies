@@ -8,8 +8,8 @@ import static fr.m2.miage.flights.services.HibernateSessionProvider.getSessionFa
 
 public class UpdateAgent extends Agent {
 
-    private static final String SERVICE_TYPE = "Airport";
-    private static final String SERVICE_NAME = "Updater";
+    private static final String SERVICE_TYPE = "test";
+    private static final String SERVICE_NAME = "test";
 
     @Override
     protected void setup() {

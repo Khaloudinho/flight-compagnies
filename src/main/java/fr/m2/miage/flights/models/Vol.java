@@ -10,8 +10,8 @@ import java.io.Serializable;
                 name = "getVolsMatchingDemand",
                 query = "select v from Vol v " +
                         "where v.pays = :pays " +
-                        "and v.volume > :volume " +
-                        "and v.dateArrivee between :dateInf and :dateSup "
+                        "and v.volume > :volume "
+                        //"and v.dateArrivee between :dateInf and :dateSup "
         ),
         @NamedQuery(
                 name = "getVols",
