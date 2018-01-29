@@ -29,7 +29,6 @@ public class DatabaseService {
     }
 
     public static void createRandomVols() {
-        System.out.println("test");
         Session session = getSessionFactory().openSession();
 
         String pays = getRandomPays();
