@@ -6,10 +6,10 @@ import jade.core.Agent;
 
 import static fr.m2.miage.flights.services.HibernateSessionProvider.getSessionFactory;
 
-public class CompagnieCharterAgent extends Agent {
+public class CompagnieAgent extends Agent {
 
-    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(CompagnieCharterAgent.class);
-    private static final String SERVICE_TYPE = "Compagnie";
+    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(CompagnieAgent.class);
+    private static final String SERVICE_TYPE = "compagnie";
     private static final String SERVICE_NAME = "Vols-Association";
 
     @Override
